@@ -1,0 +1,25 @@
+/* ==========================================================================
+   Sharpertool custom styles
+   ========================================================================== */
+body {
+  padding-top: 0;
+  padding-bottom: 20px; }
+
+.section {
+  min-height: 30em;
+  padding-left: 1em;
+  padding-right: 1em; }
+  .section.features {
+    background-color: gray; }
+  .section.nurseries {
+    background-color: lightgoldenrodyellow; }
+  .section.services {
+    background-color: palevioletred; }
+  .section.building {
+    background-color: lightsalmon; }
+  .section.gardentips {
+    background-color: lightgreen; }
+  .section.coming {
+    background-color: lightblue; }
+
+/*# sourceMappingURL=main.css.map */

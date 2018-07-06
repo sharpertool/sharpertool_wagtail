@@ -1,0 +1,31 @@
+version: '2'
+
+volumes:
+  postgres_data_dev: {}
+  webpack_node_modules: {}
+
+services:
+  postgres:
+    container_name: datapages-postgres
+    build: ./compose/postgres
+    volumes:
+      #- postgres_data_dev:/var/lib/postgresql/data
+      #- ./database/backups:/backups
+      # You can also modify this to point to your local Dropbox location where the shared
+      # backups are stored. For me this is:
+      - "~/Dropbox (Big Zeta)/Development/backups/datasheet:/backups"
+      - ./database/backups:/local_backups
+      # Enter a custom location called /mybackups that are for your localwork
+      #- "~/Dropbox (Big Zeta)/EdLocal/datapages_db:/mybackups"
+    environment:
+      - POSTGRES_USER=datasheet_user
+      - POSTGRES_DB=datasheetai
+    ports:
+      - "5442:5432"
+
+  smtpd:
+    container_name: datapages-smtpd
+    build: ./compose/smtpd
+    ports:
+      - "8026:25"
+

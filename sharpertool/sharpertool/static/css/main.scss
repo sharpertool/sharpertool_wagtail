@@ -1,0 +1,58 @@
+/* ==========================================================================
+   Sharpertool custom styles
+   ========================================================================== */
+
+// Override the styles in the base.html
+body {
+    padding-top:0;
+    padding-bottom:20px;
+}
+
+.navbar, .navbar-fixed-top {
+    //display: none;
+}
+
+.container {
+
+}
+
+.section {
+    min-height: 30em;
+    padding-left: 1em;
+    padding-right: 1em;
+
+    &.features {
+        background-color: gray;
+    }
+
+    &.nurseries {
+        background-color: lightgoldenrodyellow;
+    }
+    &.services {
+        background-color: palevioletred;
+    }
+    &.building {
+        background-color: lightsalmon;
+    }
+    &.gardentips {
+        background-color: lightgreen;
+    }
+    &.coming {
+        background-color: lightblue;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

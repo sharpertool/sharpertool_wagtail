@@ -1,0 +1,10 @@
+#!/bin/sh
+
+
+base=$(cd $(dirname $0);pwd)
+root=$(dirname $(find . -depth 2 -name 'manage.py'))
+cd ${root}
+
+${base}/.venv3/bin/python manage.py "$@"
+
+
