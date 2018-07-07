@@ -4,3 +4,6 @@ vCard-HTML-Package/
 *.zip
 
 
+/sharpertool/.env.local
+/sharpertool/sharpertool/static/css/font-awesome.css.map
+/sharpertool/sharpertool/static/css/font-awesome.css

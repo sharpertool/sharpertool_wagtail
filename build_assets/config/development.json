@@ -1,0 +1,9 @@
+{
+  "name": "Development",
+  "strict": false,
+  "breakOnError": false,
+  "src": "../sharpertool",
+  "dest": "../sharpertool/sharpertool/static",
+  "srcmap": true,
+  "minify": false
+}

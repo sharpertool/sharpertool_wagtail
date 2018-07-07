@@ -1,4 +1,7 @@
 -r base.txt
 
-uwsgi==2.0.17
+# Pick one!
+#uwsgi==2.0.17
+gunicorn==19.9.0
+
 
