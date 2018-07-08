@@ -22,8 +22,8 @@ CONF_DIR = environ.Path(__file__)
 PROJECT_DIR = environ.Path(__file__) - 3
 BASE_DIR = PROJECT_DIR - 1
 
-if DEBUG:
-    print(f"Project Dir: {PROJECT_DIR} Bases dir: {BASE_DIR}")
+if DEBUG or True:
+    print(f"Project Dir: {PROJECT_DIR} Base dir: {BASE_DIR}")
 
 # Make these unique, and don't share it with anybody.
 SECRET_KEY = env.str('SECRET_KEY')
@@ -173,7 +173,9 @@ AWS_S3_CUSTOM_DOMAIN = env.str("AWS_S3_CUSTOM_DOMAIN",
 
 STATIC_ROOT = PROJECT_DIR('static')
 STATIC_URL = '/static/'
-STATICFILES_DIRS = []
+STATICFILES_DIRS = [
+    PROJECT_DIR('static'),
+]
 
 MEDIA_ROOT = env.str("MEDIA_ROOT_LOCAL", default=BASE_DIR('media'))
 MEDIA_URL = '/media/'

@@ -9,3 +9,4 @@ vCard-HTML-Package/
 /sharpertool/sharpertool/static/css/font-awesome.css
 __pycache__
 /sharpertool/local_config.py
+/collectedstatic
