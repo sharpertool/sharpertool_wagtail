@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 
 {% load static wagtailcore_tags wagtailimages_tags %}
+{% load static wagtailuserbar %}
 
 {% block extra_style %}
     {{ block.super }}
@@ -8,14 +9,13 @@
 {% endblock %}
 
 {% block header %}
-    {{ block.super }}
 {% endblock %}
 
 {% block body %}
     <div class="jumbotron">
         <div class="container">
-            <h1>SharperTool, LLC!</h1>
-            <h3>Always sharpening the saw.</h3>
+            <h1>{{ page.title }}</h1>
+            <h3>{{ page.tagline }}</h3>
         </div>
     </div>
 
@@ -23,54 +23,17 @@
         <!-- Example row of columns -->
         <div class="row">
 
-            <div class="col-lg-3">
-                <h2><a href="https://www.python.org/" target="_blank">Python</a></h2>
-                <p>More than a decade of experience with Python. We do not know everything,
-                    but we are very good at applying our core skills to new projects.</p>
-                <p>In fact, we positively thrive on it!</p>
-            </div>
-
-            <div class="col-lg-3">
-                <h2><a href="https://www.djangoproject.com/" target="_blank">Django</a></h2>
-                <p>
-                    Django is the most popular Python based web framework.
-                    Django is fast, secure and very scalable. With Django your site can go
-                    from small, medium to huge - easily adapting to your changing needs.
-                </p>
-            </div>
-
-            <div class="col-lg-3">
-                <h2><a href="https://wagtail.io/" target="_blank">Wagtail</a></h2>
-                <p>
-                    Wagtail leverages the power of Django, and adds a
-                    word-class Content Management System (CMS) on top.
-                    It works seamlessly with Django to provide a fantastically
-                    flexible environment, but also an easy to
-                    use content management environment
-                    that can be customized to you project needs.
-                </p>
-                <p>
-                   Wagtail drives some huge sites today. Google, Nasa, MIT, to name a few.
-                    Learn more at <a href="https://wagtail.io/" target="_blank">wagtail.io</a>
-                </p>
-            </div>
-
-            <div class="col-lg-3">
-                <h2><a href="https://reactjs.org/" target="_blank">ReactJS</a></h2>
-                <p>
-                    A backend, a CMS, a database, all of those are great, but sites need to be quick,
-                    and responsive to user actions. You can't build a modern site without some healthy
-                    amounts of Javascript
-                </p>
-                <p>
-                    At Sharpertool, we use ReactJS to build components that live in the browser.
-                    The components that give you site a top-notch user experience.
-                    We use the Django backend for the API, and take full advantage of modern
-                    capabilities like Serverless functions with AWS Lambda.
-                </p>
-            </div>
-
-
+            {% for h in  page.highlights.values %}
+                <div class="col-lg-3">
+                    <h2>
+                        <a href="{{ h.link }}"
+                           target="_blank">
+                            {{ h.name}}
+                        </a>
+                    </h2>
+                    {{ h.text|richtext }}
+                </div>
+            {% endfor %}
         </div>
     </div>
 {% endblock %}

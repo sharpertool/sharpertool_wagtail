@@ -1,0 +1,13 @@
+[Unit]
+Description=uwsgi daemon
+After=network.target
+
+[Service]
+User=django
+Group=www-data
+WorkingDirectory=/home/django/sharpertool
+ExecStart=/home/django/sharpertool/.venv3/bin/uwsgi uwsgi.ini
+
+[Install]
+WantedBy=multi-user.target
+
