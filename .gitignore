@@ -10,3 +10,4 @@ vCard-HTML-Package/
 __pycache__
 /sharpertool/local_config.py
 /collectedstatic
+__pycache__/

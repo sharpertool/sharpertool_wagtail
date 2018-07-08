@@ -62,7 +62,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'storages',
-    'pipeline',
+    #'pipeline',
     'raven.contrib.django.raven_compat',
 ]
 
