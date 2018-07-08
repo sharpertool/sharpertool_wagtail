@@ -58,7 +58,7 @@ references:
         - *venv_cache_key
 
   gulp_build_cache_key: &gulp_build_cache_key
-    v1-gulp-build-{{ checksum "build/package.json" }}
+    v1-gulp-build-{{ checksum "build_assets/package.json" }}
 
   restore_gulp_build_cache: &restore_gulp_build_cache
     restore_cache:
@@ -147,7 +147,7 @@ jobs:
       - run:
           name: Show initial contents of static location
           command: |
-            ls -al ./sharpertool/static || true
+            ls -al ./sharpertool/sharpertool/static || true
             ls -al ./collectedstatic || true
 
       - run:
@@ -159,7 +159,7 @@ jobs:
       - run:
           name: Show compiled contents of static location
           command: |
-            ls -al ./sharpertool/static || true
+            ls -al ./sharpertool/sharpertool/static || true
             ls -al ./collectedstatic || true
 
       - save_cache:
@@ -170,7 +170,7 @@ jobs:
       - persist_to_workspace:
           root: *workspace_root
           paths:
-            - ./sharpertool/static
+            - ./sharpertool/sharpertool/static
             - ./collectedstatic
 
   collectstatic:
@@ -184,7 +184,7 @@ jobs:
       - run:
           name: Show compiled contents of static location
           command: |
-            ls -al ./sharpertool/static || true
+            ls -al ./sharpertool/sharpertool/static || true
 
       - run:
           name: Collect static files
@@ -229,10 +229,10 @@ jobs:
             mkdir -p zipout
             zipfile=$(./scripts/zipfilename.sh)
             zip -r zipout/${zipfile} \
-              collectedstatic/ *.wsgi django_root/ scripts/ \
+              collectedstatic/ *.wsgi sharpertool/ scripts/ \
               requirements/ requirements.txt \
-              -x \*.pyc -x django_root/local_config.py \
-              -x django_root/.env.local -x django_root/.env.test
+              -x \*.pyc -x sharpertool/local_config.py \
+              -x sharperool/.env.local -x sharpertool/.env.test
 
       - persist_to_workspace:
           root: *workspace_root

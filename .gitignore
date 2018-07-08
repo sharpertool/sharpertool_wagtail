@@ -7,3 +7,5 @@ vCard-HTML-Package/
 /sharpertool/.env.local
 /sharpertool/sharpertool/static/css/font-awesome.css.map
 /sharpertool/sharpertool/static/css/font-awesome.css
+__pycache__
+/sharpertool/local_config.py

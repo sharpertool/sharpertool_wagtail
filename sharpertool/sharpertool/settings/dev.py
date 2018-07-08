@@ -1,18 +1,31 @@
-from .base import *
+import environ
+
+env = environ.Env()
+
+from .common import *
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = env.bool('DJANGO_DEBUG', default=True)
+TEMPLATES[0]['OPTIONS']['debug'] = DEBUG
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'cv73c2482a51jke7_%l4$+4)zzn$fzf6!swvvewkhisd@r$n+e'
+MIDDLEWARE += [
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
+]
 
-# SECURITY WARNING: define the correct hosts in production!
-ALLOWED_HOSTS = ['*'] 
+INSTALLED_APPS += [
+    'debug_toolbar',
+    'django_extensions',
+]
 
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+DEBUG_TOOLBAR_CONFIG = {
+    'DISABLE_PANELS': [
+        'debug_toolbar.panels.redirects.RedirectsPanel',
+    ],
+    'SHOW_TEMPLATE_CONTEXT': True,
+}
 
+INTERNAL_IPS = ('127.0.0.1', '10.0.2.2',)
 
-try:
-    from .local import *
-except ImportError:
-    pass
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_PORT = 8026
+EMAIL_HOST = 'localhost'
