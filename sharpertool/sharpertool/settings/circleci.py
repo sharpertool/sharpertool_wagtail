@@ -32,8 +32,8 @@ STATICFILES_DIRS = [
 
 POSTGRES_HOST = env('POSTGRES_HOST', default='localhost')
 POSTGRES_PORT = env('POSTGRES_PORT', default='5432')
-POSTGRES_USER = env('POSTGRES_USER', default='datapages_user')
-POSTGRES_DB = env('POSTGRES_DB', default='datapages_test')
+POSTGRES_USER = env('POSTGRES_USER', default='django_user')
+POSTGRES_DB = env('POSTGRES_DB', default='sharpertool')
 POSTGRES_PASSWORD = env('POSTGRES_PASSWORD', default='testing-password')
 DATABASES = {
     'default': env.db("DATABASE_URL",

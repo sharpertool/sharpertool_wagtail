@@ -2,7 +2,7 @@
 
 zipfile=$1
 VERSION={$2:-''}
-APPPATH=${APPPATH:-/var/www/datapages.io}
+APPPATH=${APPPATH:-/home/django/sharpertool}
 zipdir=~/zipdir
 
 # Put site into maintenance mode
@@ -11,6 +11,7 @@ touch ${APPPATH}/maintenance.on
 echo "unzip ${zipfile} to ${zipdir}"
 rm -rf ${zipdir}
 mkdir -p ${zipdir}
+mkdir -p ~/deploy
 pushd ${zipdir}
 unzip -uoq ~/deploy/${zipfile}
 popd
@@ -21,7 +22,7 @@ echo "use rsync to synchronize the two paths"
 rsync -av ${zipdir}/ .
 
 echo "Use rsync to remove old files in selected paths"
-rsync -av --delete ${zipdir}/django_root/ django_root
+rsync -av --delete ${zipdir}/sharpertool/ sharpertool
 rsync -av --delete ${zipdir}/collectedstatic/ collectedstatic
 rsync -av --delete ${zipdir}/requirements/ requirements
 rsync -av --delete ${zipdir}/scripts/ scripts
@@ -38,19 +39,19 @@ echo -e "\n Collecting updated statics.."
 # Run migrations
 ./manage migrate --noinput
 
-echo "Updating DATAPAGES_VERSION to match production version"
-template_version=$(grep DATAPAGES_VERSION django_root/production.env.j2  | sed 's/DATAPAGES_VERSION=//')
+echo "Updating APP_VERSION to match production version"
+template_version=$(grep APP_VERSION sharpertool/production.env.j2  | sed 's/APP_VERSION=//')
 version=${VERSION:-template_version}
-sed -i -e "s/DATAPAGES_VERSION=.*/DATAPAGES_VERSION=${version}/" .env
+sed -i -e "s/APP_VERSION=.*/APP_VERSION=${version}/" .env
 
 # Update app directory user and group values
-sudo chown -R ec2-user:www ${APPPATH}
+sudo chown -R django:www-data ${APPPATH}
 
 echo -e "\n Reloading uWSGI web service.."
 
 # Note: forcing a full reload.
 #touch reload.me
-sudo /usr/local/bin/supervisorctl restart datapages.io
+sudo /usr/local/bin/supervisorctl restart sharpertool
 
 rm ${APPPATH}/maintenance.on
 

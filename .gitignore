@@ -11,3 +11,4 @@ __pycache__
 /sharpertool/local_config.py
 /collectedstatic
 __pycache__/
+*~

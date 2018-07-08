@@ -264,7 +264,7 @@ jobs:
       - run:
           name: Add Target Host to config to disable strict type checking
           command: |
-            ./scripts/host_config_nobastion.sh
+            ./scripts/host_config.sh
 
       - run:
           name: Show current config value.

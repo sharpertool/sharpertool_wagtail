@@ -2,7 +2,7 @@
 
 s3path=$1
 zipfile=$2
-apppath=${APPPATH:-"/home/ec2-user/datapages.io"}
+apppath=${APPPATH:-"/home/django/sharpertool"}
 
 # Put site into maintenance mode
 touch ${apppath}/maintenance.on

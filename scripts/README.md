@@ -4,13 +4,7 @@ Scripts used by CirleCi, build to setup access to the test/demo host -- or any h
 
 # IAM Requirements
 
-The AWS Credentials must allow use of authorize-security-group-ingress aws cli command, at minimum
-
-List of credentials as I determine them
-
-    authorize-security-group-ingress
-    describe-security-groups
-    revoke-security-group-ingress
+The AWS Credentials must allow writing to S3 bucket
 
 
 # Deploy Host
