@@ -31,7 +31,6 @@ SECRET_KEY = env.str('SECRET_KEY')
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
 
-
 # Application definition
 
 INSTALLED_APPS = [

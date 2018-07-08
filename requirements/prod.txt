@@ -1,7 +1,10 @@
 -r base.txt
 
+# Database
+psycopg2==2.7.5
+
 # Pick one!
-#uwsgi==2.0.17
-gunicorn==19.9.0
+uwsgi==2.0.17
+#gunicorn==19.9.0
 
 

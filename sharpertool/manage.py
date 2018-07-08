@@ -10,6 +10,7 @@ def local_exists():
             print("Found local_config.py here:{}".format(lc))
             return True
 
+
     return False
 
 
