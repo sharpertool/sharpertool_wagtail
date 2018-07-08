@@ -12,7 +12,7 @@ from wagtail.core.models import Orderable
 class HomePage(Page):
     tagline = models.CharField(max_length=120, default='')
 
-    content_panels = [
+    content_panels = Page.content_panels + [
         FieldPanel('tagline'),
         InlinePanel('highlights', label="Highlight Item")
     ]
