@@ -49,9 +49,8 @@ sudo chown -R django:www-data ${APPPATH}
 
 echo -e "\n Reloading uWSGI web service.."
 
-# Note: forcing a full reload.
-#touch reload.me
-sudo /usr/local/bin/supervisorctl restart sharpertool
+# Reload with reload.me
+touch reload.me
 
 rm ${APPPATH}/maintenance.on
 
