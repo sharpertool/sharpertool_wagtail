@@ -89,7 +89,7 @@ $(function () {
       map.addMarker({
         lat: 40.714353,
         lng: -74.005973,
-        icon: "images/marker.png"
+        icon: "/static/images/marker.png"
       });
 });
 
