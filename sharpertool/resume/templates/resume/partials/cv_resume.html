@@ -1,3 +1,5 @@
+{% load static wagtailcore_tags wagtailimages_tags %}
+
 <!-- SECTION 3 - CV / RESUME -->
 <section class="no-display">
     <div class="item resume" id="3">
@@ -21,107 +23,75 @@
             <h4>Education</h4>
             <div class="sep2"></div>
             <ul>
-                <li>
-                    <h5>Academy of Art University</h5>
-                    <span class="year"><i class="fa fa-calendar"></i> 2001 - 2004</span>
-                    <p>Academy of Art University's School of Web Design & New Media is the intersection between
-                        traditional design and new technologies.</p>
-                </li>
-                <li>
-                    <h5>IT Technical Institute</h5>
-                    <span class="year"><i class="fa fa-calendar"></i> 2005 - 2008</span>
-                    <p>Information technology (IT) workers can be found in many types of organizations. According to the
-                        U.S. Department of Labor, "In the modern workplace, it is imperative that Information Technology
-                        (IT) works both effectively and reliably</p>
-                </li>
-                <li>
-                    <h5>Web Design School</h5>
-                    <span class="year"><i class="fa fa-calendar"></i> 2009 - 2012</span>
-                    <p>This is Photoshop's version of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean
-                        sollicitudin, lorem quis bibendum auctor, nisi elit consequat.</p>
-                </li>
+                {% for edu in page.education.all %}
+                    <li>
+                        <h5>{{ edu.title }}</h5>
+                        <span class="year">
+                            <i class="fa fa-calendar"></i>
+                            {{ edu.start }} - {{ edu.end }}
+                        </span>
+                        {{ edu.text|richtext }}
+                    </li>
+                {% endfor %}
             </ul>
         </div>
         <div class="skills-info">
             <h4>Skills</h4>
             <div class="sep2"></div>
             <ul>
-                <li>
-                    <p>Wordpress Development <span>71%</span></p>
-                    <div class="skills-bg"><span class="skill1"></span></div>
-                </li>
-                <li>
-                    <p>Photoshop <span>85%</span></p>
-                    <div class="skills-bg"><span class="skill2"></span></div>
-                </li>
-                <li>
-                    <p>HTML5/CSS3 <span>76%</span></p>
-                    <div class="skills-bg"><span class="skill3"></span></div>
-                </li>
-                <li>
-                    <p>Ruby on Rails <span>53%</span></p>
-                    <div class="skills-bg"><span class="skill4"></span></div>
-                </li>
-                <li>
-                    <p>Social Marketing <span>69%</span></p>
-                    <div class="skills-bg"><span class="skill5"></span></div>
-                </li>
+                {% for skill in page.skills.all %}
+
+                    <li>
+                        <p>{{ skill.title}} <span>{{ skill.pct }}</span></p>
+                        <div class="skills-bg"><span class="skill{{ forloop.counter }}"></span></div>
+                    </li>
+                {% endfor %}
             </ul>
         </div>
-        <div class="services-info">
-            <h4>Services</h4>
-            <div class="sep2"></div>
-            <ul>
-                <li>
-                    <i class="fa fa-cloud"></i>
-                    <h5>Design</h5>
-                </li>
-                <li>
-                    <i class="fa fa-smile-o"></i>
-                    <h5>Coding</h5>
-                </li>
-                <li>
-                    <i class="fa fa-desktop"></i>
-                    <h5>Responsive</h5>
-                </li>
-                <li>
-                    <i class="fa fa-text-width"></i>
-                    <h5>Planing</h5>
-                </li>
-                <li>
-                    <i class="fa fa-comment"></i>
-                    <h5>Wordpress</h5>
-                </li>
-                <li>
-                    <i class="fa fa-picture-o"></i>
-                    <h5>Photography</h5>
-                </li>
-            </ul>
-        </div>
+        <!--<div class="services-info">-->
+            <!--<h4>Services</h4>-->
+            <!--<div class="sep2"></div>-->
+            <!--<ul>-->
+                <!--<li>-->
+                    <!--<i class="fa fa-cloud"></i>-->
+                    <!--<h5>Design</h5>-->
+                <!--</li>-->
+                <!--<li>-->
+                    <!--<i class="fa fa-smile-o"></i>-->
+                    <!--<h5>Coding</h5>-->
+                <!--</li>-->
+                <!--<li>-->
+                    <!--<i class="fa fa-desktop"></i>-->
+                    <!--<h5>Responsive</h5>-->
+                <!--</li>-->
+                <!--<li>-->
+                    <!--<i class="fa fa-text-width"></i>-->
+                    <!--<h5>Planing</h5>-->
+                <!--</li>-->
+                <!--<li>-->
+                    <!--<i class="fa fa-comment"></i>-->
+                    <!--<h5>Wordpress</h5>-->
+                <!--</li>-->
+                <!--<li>-->
+                    <!--<i class="fa fa-picture-o"></i>-->
+                    <!--<h5>Photography</h5>-->
+                <!--</li>-->
+            <!--</ul>-->
+        <!--</div>-->
         <div class="resume-info">
             <h4>Work Experience</h4>
             <div class="sep2"></div>
             <ul>
-                <li>
-                    <h5>Graphic River</h5>
-                    <span class="year"><i class="fa fa-calendar"></i> 2001 - 2004</span>
-                    <p>This is Photoshop's version of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean
-                        sollicitudin, lorem quis bibendum auctor.</p>
-                </li>
-                <li>
-                    <h5>Video Hive</h5>
-                    <span class="year"><i class="fa fa-calendar"></i> 2005 - 2008</span>
-                    <p>This is Photoshop's version of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean
-                        sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id
-                        elit. Duis sed odio sit amet nibh vulputate cursus a sit amet mauris. Morbi accumsan ipsum
-                        velit.</p>
-                </li>
-                <li>
-                    <h5>Themeforest</h5>
-                    <span class="year"><i class="fa fa-calendar"></i> 2009 - 2014</span>
-                    <p>This is Photoshop's version of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean
-                        sollicitudin, lorem quis bibendum auctor.</p>
-                </li>
+                {% for exp in page.experience.all %}
+                    <li>
+                        <h5>{{ exp.title }}</h5>
+                        <span class="year">
+                            <i class="fa fa-calendar"></i>
+                            {{ exp.start }} - {{ exp.end }}
+                        </span>
+                        {{ exp.text|richtext }}
+                    </li>
+                {% endfor %}
             </ul>
         </div>
     </div>

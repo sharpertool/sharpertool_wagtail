@@ -24,179 +24,29 @@
                 <ul id="filter-list" class="clearfix">
                     <li class="filter" data-filter="all"><i class="fa fa-th"></i> All</li>
                     <li class="filter" data-filter="webdesign">Web Design</li>
-                    <li class="filter" data-filter="appicon">App Icons</li>
-                    <li class="filter" data-filter="iosappui">iOS App UI</li>
-                    <li class="filter" data-filter="illustration">Illustration</li>
+                    <li class="filter" data-filter="engineering">Engineering</li>
+                    <li class="filter" data-filter="edatools">EDA Tools</li>
                 </ul>
                 <ul id="portfolio">
-                    <li class="item col-md-4 webdesign">
-                        <a title="Example 1" href="{% static 'images/projects/1-big.jpg' %}" data-lightbox-gallery="gallery1"
-                           class="nivo-lbox">
-                            <div class="folio-img">
-                                <img src="{% static 'images/projects/1.jpg' %}" alt="" class="img-responsive">
-                                <div class="overlay">
-                                    <div class="overlay-inner">
-                                        <h4>Cool App Design</h4>
-                                        <p>branding, logo</p>
+                    {% for pi in page.project_item.all %}
+                        {% image pi.image fill-600x500 as img %}
+                        {% image pi.thumb fill-600x500 as thumb %}
+
+                        <li class="item col-md-4 {{ pi.section }}">
+                            <a title="Example 1" href="{{ img.url }}" data-lightbox-gallery="gallery1"
+                               class="nivo-lbox">
+                                <div class="folio-img">
+                                    <img src="{{ thumb.url }}" alt="" class="img-responsive">
+                                    <div class="overlay">
+                                        <div class="overlay-inner">
+                                            <h4>{{ pi.title }}</h4>
+                                            <p>{{ pi.subtext }}</p>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </a>
-                    </li>
-                    <li class="item col-md-4 illustration">
-                        <a title="Sample 2" href="https://www.youtube.com/watch?v=L9szn1QQfas"
-                           data-lightbox-gallery="gallery1" class="nivo-lbox">
-                            <div class="folio-img">
-                                <img src="{% static 'images/projects/2.jpg' %}" alt="" class="img-responsive">
-                                <div class="overlay">
-                                    <div class="overlay-inner">
-                                        <h4>Cool App Design</h4>
-                                        <p>branding, logo</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </li>
-                    <li class="item col-md-4 appicon">
-                        <a title="i'm Number 3" href="https://vimeo.com/71071717" data-lightbox-gallery="gallery1"
-                           class="nivo-lbox">
-                            <div class="folio-img">
-                                <img src="{% static 'images/projects/3.jpg' %}" alt="" class="img-responsive">
-                                <div class="overlay">
-                                    <div class="overlay-inner">
-                                        <h4>Cool App Design</h4>
-                                        <p>branding, logo</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </li>
-                    <li class="item col-md-4 iosappui">
-                        <a title="Example 4" href="{% static 'images/projects/1-big.jpg' %}" data-lightbox-gallery="gallery1"
-                           class="nivo-lbox">
-                            <div class="folio-img">
-                                <img src="{% static 'images/projects/4.jpg' %}" alt="" class="img-responsive">
-                                <div class="overlay">
-                                    <div class="overlay-inner">
-                                        <h4>Cool App Design</h4>
-                                        <p>branding, logo</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </li>
-                    <li class="item col-md-4 iosappui">
-                        <a title="Sample 5" href="{% static 'images/projects/1-big.jpg' %}" data-lightbox-gallery="gallery1"
-                           class="nivo-lbox">
-                            <div class="folio-img">
-                                <img src="{% static 'images/projects/5.jpg' %}" alt="" class="img-responsive">
-                                <div class="overlay">
-                                    <div class="overlay-inner">
-                                        <h4>Cool App Design</h4>
-                                        <p>branding, logo</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </li>
-                    <li class="item col-md-4 illustration">
-                        <a title="Lorem ipsum 6" href="{% static 'images/projects/1-big.jpg' %}" data-lightbox-gallery="gallery1"
-                           class="nivo-lbox">
-                            <div class="folio-img">
-                                <img src="{% static 'images/projects/6.jpg' %}" alt="" class="img-responsive">
-                                <div class="overlay">
-                                    <div class="overlay-inner">
-                                        <h4>Cool App Design</h4>
-                                        <p>branding, logo</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </li>
-                    <li class="item col-md-4 webdesign">
-                        <a title="Example 7" href="{% static 'images/projects/1-big.jpg' %}" data-lightbox-gallery="gallery1"
-                           class="nivo-lbox">
-                            <div class="folio-img">
-                                <img src="{% static 'images/projects/7.jpg' %}" alt="" class="img-responsive">
-                                <div class="overlay">
-                                    <div class="overlay-inner">
-                                        <h4>Cool App Design</h4>
-                                        <p>branding, logo</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </li>
-                    <li class="item col-md-4 iosappui">
-                        <a title="Sample 8" href="{% static 'images/projects/1-big.jpg' %}" data-lightbox-gallery="gallery1"
-                           class="nivo-lbox">
-                            <div class="folio-img">
-                                <img src="{% static 'images/projects/8.jpg' %}" alt="" class="img-responsive">
-                                <div class="overlay">
-                                    <div class="overlay-inner">
-                                        <h4>Cool App Design</h4>
-                                        <p>branding, logo</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </li>
-                    <li class="item col-md-4 webdesign">
-                        <a title="Project 9" href="{% static 'images/projects/1-big.jpg' %}" data-lightbox-gallery="gallery1"
-                           class="nivo-lbox">
-                            <div class="folio-img">
-                                <img src="{% static 'images/projects/9.jpg' %}" alt="" class="img-responsive">
-                                <div class="overlay">
-                                    <div class="overlay-inner">
-                                        <h4>Cool App Design</h4>
-                                        <p>branding, logo</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </li>
-                    <li class="item col-md-4 illustration">
-                        <a title="Example 10" href="{% static 'images/projects/1-big.jpg' %}" data-lightbox-gallery="gallery1"
-                           class="nivo-lbox">
-                            <div class="folio-img">
-                                <img src="{% static 'images/projects/10.jpg' %}" alt="" class="img-responsive">
-                                <div class="overlay">
-                                    <div class="overlay-inner">
-                                        <h4>Cool App Design</h4>
-                                        <p>branding, logo</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </li>
-                    <li class="item col-md-4 appicon">
-                        <a title="Item 11" href="{% static 'images/projects/1-big.jpg' %}" data-lightbox-gallery="gallery1"
-                           class="nivo-lbox">
-                            <div class="folio-img">
-                                <img src="{% static 'images/projects/11.jpg' %}" alt="" class="img-responsive">
-                                <div class="overlay">
-                                    <div class="overlay-inner">
-                                        <h4>Cool App Design</h4>
-                                        <p>branding, logo</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </li>
-                    <li class="item col-md-4 iosappui">
-                        <a title="Sample 12" href="{% static 'images/projects/1-big.jpg' %}" data-lightbox-gallery="gallery1"
-                           class="nivo-lbox">
-                            <div class="folio-img">
-                                <img src="{% static 'images/projects/12.jpg' %}" alt="" class="img-responsive">
-                                <div class="overlay">
-                                    <div class="overlay-inner">
-                                        <h4>Cool App Design</h4>
-                                        <p>branding, logo</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </li>
+                            </a>
+                        </li>
+                    {% endfor %}
                 </ul>
             </div>
         </div>
