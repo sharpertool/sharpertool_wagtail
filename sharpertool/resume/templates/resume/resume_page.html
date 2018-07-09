@@ -25,7 +25,8 @@
 		<div class="row">
 			<div class="col-md-3 l-content">
 				<div class="profile-pic">
-					<div class="pic-bg"><img src="{% static 'images/profile-avatar.png' %}" class="img-responsive" alt=""/></div>
+                    {% image page.profile_image max-120x120 as profile %}
+					<div class="pic-bg"><img src="{{ profile.url }}" class="img-responsive" alt=""/></div>
 				</div>
 				<nav>
 				<ul class="navigation">
@@ -47,8 +48,8 @@
                         {% include "resume/partials/blog_news.html" %}
                         {% include "resume/partials/contact.html" %}
 					</div>
-                    {% include "resume/partials/footer.html" %}
 				</div>
+                {% include "resume/partials/footer.html" %}
 			</div>
 		</div>
 	</div>

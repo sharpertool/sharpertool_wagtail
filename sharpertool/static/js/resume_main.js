@@ -55,8 +55,8 @@ $(function () {
   "use strict";
 	var map = new GMaps({
 	el: "#map",
-	lat: 40.714353,
-	lng: -74.005973,
+	lat: 43.610591,
+	lng: -116.392550,
           zoom: 15, 
           zoomControl : true,
           zoomControlOpt: {
@@ -87,8 +87,8 @@ $(function () {
       map.setStyle("map_style");
 
       map.addMarker({
-        lat: 40.714353,
-        lng: -74.005973,
+        lat: 43.610591,
+        lng: -116.392550,
         icon: "/static/images/marker.png"
       });
 });

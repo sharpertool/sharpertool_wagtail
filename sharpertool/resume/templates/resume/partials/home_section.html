@@ -1,36 +1,37 @@
+{% load static wagtailcore_tags wagtailimages_tags %}
+
 <!-- SECTION 1 - HOMEPAGE -->
 <section class="no-display">
     <div class="profile" id="1">
-        <h2>Hello, I am <span>Ed Henderson</span><br>Electrical Engineer, and Full-Stack Developer</h2>
+        <h2>{{ page.heading|richtext }}</h2>
         <div class="sep1"></div>
-        <p>I have ten years experience as a web/interface designer. I have a love of clean, elegant styling, and I have
-            lots of experience in the production of CSS and (X)HTML for modern websites. I have a reasonable grasp of
-            using JavaScript frameworks, specifically jQuery.</p>
+        {{ page.intro|richtext }}
         <div class="personal-info col-md-12 no-padding">
             <h4>Personal Info</h4>
             <div class="sep2"></div>
             <ul>
                 <li>
-                    <div class="p-info"><em>name</em><span>Ed Henderson</span></div>
+                    <div class="p-info"><em>name</em><span>{{ page.name }}</span></div>
+                </li>
+                {% if page.dob %}
+                <li>
+                    <div class="p-info"><em>date of birth</em><span>{{ page.dob }}</span></div>
+                </li>
+                {% endif %}
+                <li>
+                    <div class="p-info"><em>e-mail</em><span>{{ page.email }}</span></div>
                 </li>
                 <li>
-                    <div class="p-info"><em>date of birth</em><span>April 1, 1961</span></div>
+                    <div class="p-info"><em>address</em><span>{{ page.address }}</span></div>
                 </li>
                 <li>
-                    <div class="p-info"><em>e-mail</em><span>ed@sharpertool.com</span></div>
+                    <div class="p-info"><em>phone</em><span>{{ page.phone }}</span></div>
                 </li>
                 <li>
-                    <div class="p-info"><em>address</em><span>Boise, Idaho</span></div>
-                </li>
-                <li>
-                    <div class="p-info"><em>phone</em><span>208 861-5756</span></div>
-                </li>
-                <li>
-                    <div class="p-info"><em>website</em><span>sharpertool.com</span></div>
+                    <div class="p-info"><em>website</em><span>{{ page.website }}</span></div>
                 </li>
             </ul>
         </div>
         <div class="clearfix"></div>
     </div>
 </section>
-<!-- SECTION 1 - HOMEPAGE -->
