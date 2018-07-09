@@ -197,7 +197,7 @@ else:
     MEDIAFILES_LOCATION = env.str("MEDIAFILES_LOCATION", default="mediafiles")
     MEDIA_ROOT = "mediafiles"
     MEDIA_URL = "{0}{1}/".format(CDN_URL, MEDIA_ROOT)
-    DEFAULT_FILE_STORAGE = 'custom_storages.MediaStorage'
+    DEFAULT_FILE_STORAGE = 'sharpertool.custom_storages.MediaStorage'
 
     ADMIN_MEDIA_PREFIX = "{}admin/".format(CDN_URL)
 
