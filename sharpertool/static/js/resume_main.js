@@ -50,46 +50,4 @@ jQuery(document).ready(function($) {
 	},{accX: 0, accY: -150});
 });
 
-/* Google map */
-$(function () {
-  "use strict";
-	var map = new GMaps({
-	el: "#map",
-	lat: 43.610591,
-	lng: -116.392550,
-          zoom: 15, 
-          zoomControl : true,
-          zoomControlOpt: {
-            style : "BIG",
-            position: "TOP_LEFT"
-          },
-          panControl : true,
-          streetViewControl : false,
-          mapTypeControl: false,
-          overviewMapControl: false
-      });
-        
-      var styles = [
-            {
-              stylers: [
-                { hue: "#00ffe6" },
-                { saturation: -100 }
-              ]
-            }
-      ];
-        
-      map.addStyle({
-            styledMapName:"Styled Map",
-            styles: styles,
-            mapTypeId: "map_style"  
-      });
-        
-      map.setStyle("map_style");
-
-      map.addMarker({
-        lat: 43.610591,
-        lng: -116.392550,
-        icon: "/static/images/marker.png"
-      });
-});
 

@@ -21,38 +21,38 @@
 
 <!-- MAIN CONTENT -->
 <div class="main-content">
-	<div class="container no-padding">
-		<div class="row">
-			<div class="col-md-3 l-content">
-				<div class="profile-pic">
+    <div class="container no-padding">
+        <div class="row">
+            <div class="col-md-3 l-content">
+                <div class="profile-pic">
                     {% image page.profile_image max-120x120 as profile %}
-					<div class="pic-bg"><img src="{{ profile.url }}" class="img-responsive" alt=""/></div>
-				</div>
-				<nav>
-				<ul class="navigation">
-					<li><a href="#">Profile <i class="fa fa-user"></i></a></li>
-					<li><a href="#">Work <i class="fa fa-briefcase"></i></a></li>
-					<li><a href="#">Resume <i class="fa fa-file-text"></i></a></li>
-					<li><a href="#">Blog <i class="fa fa-comment"></i></a></li>
-					<li><a href="#">Contact <i class="fa fa-envelope"></i></a></li>
-				</ul>
-				</nav>
-			</div>
+                    <div class="pic-bg"><img src="{{ profile.url }}" class="img-responsive" alt=""/></div>
+                </div>
+                <nav>
+                    <ul class="navigation">
+                        <li><a href="#">Profile <i class="fa fa-user"></i></a></li>
+                        <li><a href="#">Work <i class="fa fa-briefcase"></i></a></li>
+                        <li><a href="#">Resume <i class="fa fa-file-text"></i></a></li>
+                        <li><a href="#">Blog <i class="fa fa-comment"></i></a></li>
+                        <li><a href="#">Contact <i class="fa fa-envelope"></i></a></li>
+                    </ul>
+                </nav>
+            </div>
 
-			<div class="col-md-9 r-content">
-				<div class="flexslider">
-					<div class="slides">
+            <div class="col-md-9 r-content">
+                <div class="flexslider">
+                    <div class="slides">
                         {% include "resume/partials/home_section.html" %}
                         {% include "resume/partials/project_work.html" %}
                         {% include "resume/partials/cv_resume.html" %}
                         {% include "resume/partials/blog_news.html" %}
                         {% include "resume/partials/contact.html" %}
-					</div>
-				</div>
+                    </div>
+                </div>
                 {% include "resume/partials/footer.html" %}
-			</div>
-		</div>
-	</div>
+            </div>
+        </div>
+    </div>
 </div>
 <!-- MAIN CONTENT -->
 {% endblock %}
@@ -95,6 +95,50 @@
             $("body").css("background", "#222222");
         });
     });
+
+    /* Google map */
+    $(function() {
+        "use strict";
+        var map = new GMaps({
+            el: "#map",
+            lat: {{ page.contact_latitude }},
+            lng: {{ page.contact_longitude }},
+            zoom: 15,
+            zoomControl: true,
+            zoomControlOpt: {
+                style: "BIG",
+                position: "TOP_LEFT"
+            },
+            panControl: true,
+            streetViewControl: false,
+            mapTypeControl: false,
+            overviewMapControl: false
+        });
+
+        var styles = [
+            {
+                stylers: [
+                    {hue: "#00ffe6"},
+                    {saturation: -100}
+                ]
+            }
+        ];
+
+        map.addStyle({
+            styledMapName: "Styled Map",
+            styles: styles,
+            mapTypeId: "map_style"
+        });
+
+        map.setStyle("map_style");
+
+        map.addMarker({
+            lat: {{ page.contact_latitude }},
+            lng: {{ page.contact_longitude }},
+            icon: "/static/images/marker.png"
+        });
+    });
+
 </script>
 {% endblock %}
 

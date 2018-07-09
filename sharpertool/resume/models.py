@@ -29,6 +29,8 @@ class ResumePage(Page):
 
     contact_info = RichTextField(default='')
     contact_email = models.EmailField(null=True, blank=True)
+    contact_longitude = models.FloatField(null=True, blank=True)
+    contact_latitude = models.FloatField(null=True, blank=True)
 
 
     content_panels = Page.content_panels + [
@@ -46,5 +48,7 @@ class ResumePage(Page):
         MultiFieldPanel([
             FieldPanel('contact_info'),
             FieldPanel('contact_email', heading="Enter value if different from main email"),
+            FieldPanel('contact_longitude', heading='Longitude of Contact location'),
+            FieldPanel('contact_latitude', heading='Latitude of Contact location'),
         ], heading='Contacts', classname="collapsible collapsed"),
     ]
