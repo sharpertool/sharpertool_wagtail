@@ -59,6 +59,9 @@ class ResumePage(Page):
             FieldPanel('contact_longitude', heading='Longitude of Contact location'),
             FieldPanel('contact_latitude', heading='Latitude of Contact location'),
         ], heading='Contacts', classname="collapsible collapsed"),
+        MultiFieldPanel([
+            InlinePanel('blog_entries')
+        ], heading='Blog Entries', classname="collapsible collapsed")
     ]
 
     def get_context(self, request, *args, **kwargs):
@@ -134,5 +137,21 @@ class Experience(Orderable):
         FieldPanel('title'),
         FieldPanel('start', heading='Start month-year, or just year'),
         FieldPanel('end', heading='End month-year, or just year'),
+        FieldPanel('text'),
+    ]
+
+
+class ResumeBlog(Orderable):
+    page = ParentalKey(ResumePage, on_delete=models.CASCADE, related_name='blog_entries')
+    title = models.CharField(max_length=120, null=True, blank=True)
+    image = models.ForeignKey(
+        'wagtailimages.Image', null=True, blank=True,
+        on_delete=models.SET_NULL, related_name='+'
+    )
+    text = RichTextField(null=True, blank=True)
+
+    panels = [
+        FieldPanel('title'),
+        ImageChooserPanel('image', heading='Large image for lightbox'),
         FieldPanel('text'),
     ]
