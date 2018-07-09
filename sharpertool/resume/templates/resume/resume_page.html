@@ -1,0 +1,101 @@
+{% extends "resume/resume_base.html" %}
+
+{% load static wagtailcore_tags wagtailimages_tags %}
+{% load static wagtailuserbar %}
+
+
+{% block extra_style %}
+{{ block.super }}
+<link rel="stylesheet" href="{% static '/static/css/landing.css' %}">
+{% endblock %}
+
+{% block body_class %}resume-body{% endblock %}
+
+{% block body_container %}
+<!-- LOADING MASK -->
+<div id="mask">
+    <div class="loader">
+        <img src="{% static 'images/loading.gif' %}" alt='loading'>
+    </div>
+</div>
+
+<!-- MAIN CONTENT -->
+<div class="main-content">
+	<div class="container no-padding">
+		<div class="row">
+			<div class="col-md-3 l-content">
+				<div class="profile-pic">
+					<div class="pic-bg"><img src="{% static 'images/profile-avatar.png' %}" class="img-responsive" alt=""/></div>
+				</div>
+				<nav>
+				<ul class="navigation">
+					<li><a href="#">Profile <i class="fa fa-user"></i></a></li>
+					<li><a href="#">Work <i class="fa fa-briefcase"></i></a></li>
+					<li><a href="#">Resume <i class="fa fa-file-text"></i></a></li>
+					<li><a href="#">Blog <i class="fa fa-comment"></i></a></li>
+					<li><a href="#">Contact <i class="fa fa-envelope"></i></a></li>
+				</ul>
+				</nav>
+			</div>
+
+			<div class="col-md-9 r-content">
+				<div class="flexslider">
+					<div class="slides">
+                        {% include "resume/partials/home_section.html" %}
+                        {% include "resume/partials/project_work.html" %}
+                        {% include "resume/partials/cv_resume.html" %}
+                        {% include "resume/partials/blog_news.html" %}
+                        {% include "resume/partials/contact.html" %}
+					</div>
+                    {% include "resume/partials/footer.html" %}
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- MAIN CONTENT -->
+{% endblock %}
+
+{% block header %}
+{% endblock %}
+
+{% block body %}
+{% endblock %}
+
+{% block body_script %}
+<!-- JavaScript -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="{% static 'js/bootstrap.js' %}"></script>
+<script src="{% static 'js/jquery.flexslider.js' %}"></script>
+<script src="{% static 'js/jquery.easing.js' %}"></script>
+<script src="{% static 'js/jquery.mixitup.min.js' %}"></script>
+<script src="{% static 'js/nivo-lightbox.min.js' %}"></script>
+<script src="{% static 'js/jquery.appear.js' %}"></script>
+<script src="{% static 'js/jquery.inview.js' %}"></script>
+<script src="{% static 'js/resume_main.js' %}"></script>
+<script src="{% static 'js/contact.js' %}"></script>
+<script src="{% static 'js/animations.js' %}"></script>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB7z3qSfW7_1ArWHGs69jHLbLw-jOOGwuk"></script>
+<script src="{% static 'js/gmaps.js' %}"></script>
+
+<script src="{% static 'js/styleswitch.js' %}"></script>
+<script src="{% static 'js/style_switch_custom.js' %}"></script>
+
+<script>
+    $(function() {
+        $(".bg-lite").click(function() {
+            $("body").css("background", "#d9dbdd");
+        });
+    });
+
+    $(function() {
+        $(".bg-dark").click(function() {
+            $("body").css("background", "#222222");
+        });
+    });
+</script>
+{% endblock %}
+
+{% block extra_js %}
+{% endblock %}

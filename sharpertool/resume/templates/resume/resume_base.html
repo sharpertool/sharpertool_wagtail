@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% load static wagtailuserbar %}
+
+
+{% block meta-extra %}
+	<meta name="keywords" content="Ed Henderson,resume" />
+	<meta name="description" content="Resume">
+	<meta name="author" content="Ed Henderson">
+
+	<!-- Mobile Meta -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+{% endblock %}
+
+{% block favicons %}
+	<!-- Favicons -->
+	<link rel="shortcut icon" href="{% static 'img/favicon.ico' %}">
+	<link rel="apple-touch-icon" href="{% static 'img/apple-touch-icon.png' %}">
+	<link rel="apple-touch-icon" sizes="72x72" href="{% static 'img/apple-touch-icon-72x72.png' %}">
+	<link rel="apple-touch-icon" sizes="114x114" href="{% static 'img/apple-touch-icon-114x114.png' %}">
+	<link rel="apple-touch-icon" sizes="144x144" href="{% static 'img/apple-touch-icon-144x144.png' %}">
+{% endblock %}
+
+{% block fonts %}
+	<!-- Google Webfonts -->
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,400italic,600,700,800,700italic,600italic' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Neuton:400,200,300' rel='stylesheet' type='text/css'>
+{% endblock %}
+
+{% block extra_css %}
+	<!-- Theme Styles CSS-->
+	<link href="{% static 'font-awesome/css/font-awesome.min.css" rel="stylesheet' %}">
+	<link rel="stylesheet" href="{% static 'css/style.css' %}" >
+	<link rel="stylesheet" href="{% static 'css/flexslider.css' %}"/>
+	<link rel="stylesheet" href="{% static 'css/nivo-lightbox.css' %}" />
+	<link rel="stylesheet" href="{% static 'images/themes/default/default.css' %}" />
+	<!--<link rel="stylesheet" href="{% static 'css/jquery.mCustomScrollbar.css' %}" />-->
+	<link rel="stylesheet" href="{% static 'css/animate.css' %}" />
+
+	<!-- Style Switch -->
+	<link rel="stylesheet" type="text/css" href="{% static 'css/colors/yellow-black.css' %}" title="yellow" media="screen" />
+   	<!--<link rel="alternate stylesheet" type="text/css" href="{% static 'css/colors/full-black.css' %}" title="black" media="screen" />-->
+	<link rel="alternate stylesheet" type="text/css" href="{% static 'css/colors/orange-black.css'%}" title="orange" media="screen" />
+	<link rel="alternate stylesheet" type="text/css" href="{% static 'css/colors/blue-black.css' %}" title="blue" media="screen" />
+	<link rel="alternate stylesheet" type="text/css" href="{% static 'css/colors/red-black.css' %}" title="red" media="screen" />
+	<link rel="alternate stylesheet" type="text/css" href="{% static 'css/colors/green-black.css' %}" title="green" media="screen" />
+	<link rel="alternate stylesheet" type="text/css" href="{% static 'css/colors/pink-black.css' %}" title="pink" media="screen" />
+	<link rel="alternate stylesheet" type="text/css" href="{% static 'css/colors/pale-green-black.css' %}" title="pale-green" media="screen" />
+{% endblock %}

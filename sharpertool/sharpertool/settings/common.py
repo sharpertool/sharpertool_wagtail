@@ -35,6 +35,7 @@ SECRET_KEY = env.str('SECRET_KEY')
 
 INSTALLED_APPS = [
     'home',
+    'resume',
     'search',
 
     'wagtail.contrib.forms',
