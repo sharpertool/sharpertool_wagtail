@@ -169,7 +169,7 @@ AWS_S3_OBJECT_PARAMETERS = env.dict("AWS_S3_OBJECT_PARAMETERS",
                                         'CacheControl': 'max-age=86400'
                                     })
 AWS_S3_CUSTOM_DOMAIN = env.str("AWS_S3_CUSTOM_DOMAIN",
-                               default="{}.s3.amazonaws.com".format(AWS_STORAGE_BUCKET_NAME))
+                               default=f"{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com")
 
 STATIC_ROOT = PROJECT_DIR('static')
 STATIC_URL = '/static/'
@@ -196,12 +196,12 @@ else:
 
     MEDIAFILES_LOCATION = env.str("MEDIAFILES_LOCATION", default="mediafiles")
     MEDIA_ROOT = "mediafiles"
-    MEDIA_URL = "{0}{1}/".format(CDN_URL, MEDIA_ROOT)
+    MEDIA_URL = f"{CDN_URL}{MEDIA_ROOT}/"
     DEFAULT_FILE_STORAGE = 'sharpertool.custom_storages.MediaStorage'
 
-    ADMIN_MEDIA_PREFIX = "{}admin/".format(CDN_URL)
+    ADMIN_MEDIA_PREFIX = f"{CDN_URL}admin/"
 
-    print("CDN Domain:{}".format(AWS_S3_CUSTOM_DOMAIN))
+    print(f"CDN Domain:{AWS_S3_CUSTOM_DOMAIN}")
 
 
 # Wagtail settings
@@ -210,7 +210,7 @@ WAGTAIL_SITE_NAME = env.str("WAGTAIL_SITE_NAME", default="sharpertool.com")
 
 # Base URL to use when referring to full URLs within the Wagtail admin backend -
 # e.g. in notification emails. Don't include '/admin' or a trailing slash
-BASE_URL = 'https://{0}'.format(WAGTAIL_SITE_NAME)
+BASE_URL = 'https://{WAGTAIL_SITE_NAME}'
 
 # Hosts/domain names that are valid for this site; required if DEBUG is False
 # See https://docs.djangoproject.com/en/dev/ref/settings/#allowed-hosts

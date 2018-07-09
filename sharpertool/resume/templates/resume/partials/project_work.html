@@ -30,7 +30,11 @@
                 <ul id="portfolio">
                     {% for pi in page.project_item.all %}
                         {% image pi.image fill-600x500 as img %}
-                        {% image pi.thumb fill-600x500 as thumb %}
+                        {% if pi.thumb %}
+                            {% image pi.thumb fill-600x500 as thumb %}
+                        {% else %}
+                            {% image pi.image fill-140x120 as thumb %}
+                        {% endif %}
 
                         <li class="item col-md-4 {{ pi.section }}">
                             <a title="Example 1" href="{{ img.url }}" data-lightbox-gallery="gallery1"
