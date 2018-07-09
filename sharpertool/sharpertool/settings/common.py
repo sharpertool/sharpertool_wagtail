@@ -192,7 +192,7 @@ else:
     print("Setting up to use S3 storage.")
 
     CDN_URL = env.str('CDN_URL',
-                      default=f"http://{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com/")
+                      default=f"https://{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com/")
 
     MEDIAFILES_LOCATION = env.str("MEDIAFILES_LOCATION", default="mediafiles")
     MEDIA_ROOT = "mediafiles"
