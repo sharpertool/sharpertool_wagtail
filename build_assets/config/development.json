@@ -3,7 +3,7 @@
   "strict": false,
   "breakOnError": false,
   "src": "../sharpertool",
-  "dest": "../sharpertool/sharpertool/static",
+  "dest": "../sharpertool/static",
   "srcmap": true,
   "minify": false
 }
