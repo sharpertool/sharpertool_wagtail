@@ -170,7 +170,7 @@ jobs:
       - persist_to_workspace:
           root: *workspace_root
           paths:
-            - ./sharpertool/sharpertool/static
+            - ./sharpertool/static
             - ./collectedstatic
 
   collectstatic:
@@ -184,7 +184,7 @@ jobs:
       - run:
           name: Show compiled contents of static location
           command: |
-            ls -al ./sharpertool/sharpertool/static || true
+            ls -al ./sharpertool/static || true
 
       - run:
           name: Collect static files
