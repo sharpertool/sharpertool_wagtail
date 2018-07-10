@@ -41,9 +41,18 @@
             <ul>
                 {% for skill in page.skills.all %}
 
-                    <li>
-                        <p>{{ skill.title}} <span>{{ skill.pct }}</span></p>
-                        <div class="skills-bg"><span class="skill{{ forloop.counter }}"></span></div>
+                    <li class="skill-item">
+                        <div class="skill-header">
+                        <p>{{ skill.title}} <span>{{ skill.percent }}</span></p>
+                        <div class="skills-bg">
+                            <span class="skill-bar skill{{ forloop.counter }}"
+                                  data-pct="{{ skill.percent }}">
+                            </span>
+                        </div>
+                        </div>
+                        <div class="skill-details">
+                            {{ skill.details|richtext }}
+                        </div>
                     </li>
                 {% endfor %}
             </ul>

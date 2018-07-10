@@ -119,10 +119,12 @@ class Skills(Orderable):
     page = ParentalKey(ResumePage, on_delete=models.CASCADE, related_name='skills')
     title = models.CharField(max_length=120, null=True, blank=True)
     percent = models.CharField(max_length=5, null=True, blank=True)
+    details = RichTextField(null=True, blank=True)
 
     panels = [
         FieldPanel('title'),
         FieldPanel('percent', heading='A percent value from 0-100, format: 56%'),
+        FieldPanel('details', heading='Provide some justification on your percentage'),
     ]
 
 

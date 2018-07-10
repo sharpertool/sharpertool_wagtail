@@ -1,11 +1,19 @@
 /* ==========================================================================
    Sharpertool custom styles
    ========================================================================== */
+@mixin transition($effects...) {
+    -webkit-transition: $effects;
+       -moz-transition: $effects;
+        -ms-transition: $effects;
+         -o-transition: $effects;
+            transition: $effects;
+
+}
 
 // Override the styles in the base.html
 body {
-    padding-top:0;
-    padding-bottom:20px;
+    padding-top: 0;
+    padding-bottom: 20px;
 }
 
 .navbar, .navbar-fixed-top {
@@ -42,7 +50,18 @@ body {
     }
 }
 
+// Skill details shown on hover
+.skill-details {
+    opacity: 0;
+    max-height: 0;
+    @include transition(max-height 0.3s, opacity 0.75s);
+    //@include transition(height, 0.75s);
+}
 
+.skill-header:hover + .skill-details {
+    max-height: 200px;
+    opacity: 1;
+}
 
 
 
