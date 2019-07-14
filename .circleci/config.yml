@@ -1,39 +1,34 @@
-version: 2.0
+version: 2.1
+orbs:
+  cypress: cypress-io/cypress@1.1.0
 
-references:
-
-  container_config: &container_config
+executors:
+  container_config:
     working_directory: ~/build
     docker:
-      - image: bigzeta/docker_ci_python3:1.1.1
+      - image: sharpertool/docker_ci_python3:1.5.1
         environment:
-          ZIP_PREFIX: sharpertool
+          ZIP_PREFIX: gardentronic
 
 
-      - image: bigzeta/ci_postgres:1.0.0
+      - image: sharpertool/ci_postgis:1.0.1
         environment:
           POSTGRES_PASSWORD: testing-password
-          POSTGRES_USER: django_user
-          POSTGRES_DB: sharpertool
+          POSTGRES_USER: circleci
+          POSTGRES_DB: gardentronic
 
-      - image: bigzeta/smtpd:1.0.0
+      - image: sharpertool/smtpd:1.0.1
 
-  container_config_min: &container_config_min
+  container_config_min:
     working_directory: ~/build
     docker:
-      - image: bigzeta/docker_ci_python3:1.1.1
+      - image: sharpertool/docker_ci_python3:1.5.1
         environment:
-          ZIP_PREFIX: sharpertool
-          DEPLOY_BUCKET: sharpertool.deploy
+          ZIP_PREFIX: gardentronic
+          DEPLOY_BUCKET: gardentronic.deploy
           DEPLOY_BUCKET_PATH: backend_versions
 
-  devops_config: &devops_config
-    working_directory: ~/build
-    docker:
-      - image: bigzeta/devops_base:1.3.1
-        auth:
-          username: kutenai
-          password: $DOCKERHUB_PASSWORD
+references:
 
   workspace_root: &workspace_root
     ~/build
@@ -85,7 +80,7 @@ references:
 
 jobs:
   checkout_code:
-    <<: *container_config_min
+    executor: container_config_min
     steps:
       - *restore_repo
 
@@ -113,7 +108,7 @@ jobs:
             - .
 
   build_venv:
-    <<: *container_config_min
+    executor: container_config_min
     steps:
       - *restore_repo
       - *restore_venv
@@ -131,7 +126,7 @@ jobs:
             - .venv
 
   compile_assets:
-    <<: *container_config_min
+    executor: container_config_min
     steps:
       - *restore_repo
       - *restore_venv
@@ -174,7 +169,7 @@ jobs:
             - ./collectedstatic
 
   collectstatic:
-    <<: *container_config_min
+    executor: container_config_min
     steps:
       - *restore_repo
       - *restore_venv
@@ -200,7 +195,7 @@ jobs:
             - ./collectedstatic
 
   pytest:
-    <<: *container_config
+    executor: container_config
     steps:
       - *restore_repo
       - *restore_venv
@@ -217,7 +212,7 @@ jobs:
             DJANGO_SETTINGS_MODULE=sharpertool.settings.circleci python manage.py test
 
   build_zip_file:
-    <<: *container_config_min
+    executor: container_config_min
     steps:
       - *restore_repo
       - *restore_venv
@@ -240,7 +235,7 @@ jobs:
             - ./zipout
 
   deploy_to_s3_bucket:
-    <<: *container_config_min
+    executor: container_config_min
     steps:
       - *restore_repo
       - *restore_venv
@@ -255,7 +250,7 @@ jobs:
             aws s3 cp zipout/${zipfile} ${s3path}
 
   deploy_to_test_server:
-    <<: *container_config_min
+    executor: container_config_min
     steps:
       - *restore_repo
       - *disable_strict_type_checking
