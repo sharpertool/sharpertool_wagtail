@@ -1,32 +1,32 @@
 
 # Core tools
-django==2.0.7
-wagtail==2.1.1
+django==2.2.3
+wagtail==2.5.1
 
-django-allauth==0.36.0
+django-allauth==0.39.1
 
 # Logging, errors
-raven==6.9.0
+raven==6.10.0
 
-django-model-utils==3.1.2
+django-model-utils==3.2.0
 
 # Reading environment variables, secure enclaves
 django-environ==0.4.5
 
 # For caching
-django-redis
+django-redis==4.10.0
 
 # Static and Media files
-django-storages==1.6.6
-boto3==1.7.50
+django-storages==1.7.1
+boto3==1.9.188
 django-pipeline==1.6.14
 
 # SCSS files
-django-compressor==2.2
+django-compressor==2.3
 
 # Utilities
-pytz==2018.5
-Pillow==5.2.0
+pytz==2019.1
+Pillow==6.1.0
 
 django-suit==0.2.26
 

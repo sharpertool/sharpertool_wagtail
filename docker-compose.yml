@@ -11,11 +11,12 @@ services:
     volumes:
       # You can also modify this to point to your local Dropbox location where the shared
       # backups are stored. For me this is:
-      - "~/Dropbox (Personal)/Development/database/sharpertool:/backups"
-      - ./database/backups:/local_backups
+      - "${BACKUP_ROOT}:/backups"
+      - "${LOCAL_BACKUPS}:/local_backups"
     environment:
       - POSTGRES_USER=django_user
       - POSTGRES_DB=sharpertool
+      - POSTGRES_PASSWORD
     ports:
       - "5446:5432"
 
