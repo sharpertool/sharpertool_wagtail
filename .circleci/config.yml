@@ -269,7 +269,7 @@ jobs:
       - run:
           name: Add Target Host to config to disable strict type checking
           command: |
-            ./scripts/host_config.sh
+            ./ci_scripts/host_config.sh
 
       - run:
           name: Show current config value.
@@ -280,9 +280,12 @@ jobs:
             fi
 
 #      - run:
-#          name: Copy deploy script to test server
+#          name: Copy deploy script to server
 #          command: |
-#            scp ./scripts/site_deploy_zip.sh deploy_host:site_deploy_zip.sh
+#            ./ci_scripts/copy_deploy_script.sh
+#          environment:
+#            BASE_DIR: /home/django/sharpertool
+#            SRC_SCRIPT: site_deploy_zip.sh
 
       - run:
           name: Copy zipfile to server
