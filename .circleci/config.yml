@@ -8,14 +8,14 @@ executors:
     docker:
       - image: sharpertool/docker_ci_python3:1.5.1
         environment:
-          ZIP_PREFIX: gardentronic
+          ZIP_PREFIX: sharpertool
 
 
       - image: sharpertool/ci_postgis:1.0.1
         environment:
           POSTGRES_PASSWORD: testing-password
-          POSTGRES_USER: circleci
-          POSTGRES_DB: gardentronic
+          POSTGRES_USER: django_user
+          POSTGRES_DB: sharpertool
 
       - image: sharpertool/smtpd:1.0.1
 
@@ -24,8 +24,8 @@ executors:
     docker:
       - image: sharpertool/docker_ci_python3:1.5.1
         environment:
-          ZIP_PREFIX: gardentronic
-          DEPLOY_BUCKET: gardentronic.deploy
+          ZIP_PREFIX: sharpertool
+          DEPLOY_BUCKET: sharpertool.deploy
           DEPLOY_BUCKET_PATH: backend_versions
 
 references:
@@ -222,7 +222,7 @@ jobs:
           name: Build zip deploy file and persist to workspace
           command: |
             mkdir -p zipout
-            zipfile=$(./scripts/zipfilename.sh)
+            zipfile=$(./ci_scripts/zipfilename.sh)
             zip -r zipout/${zipfile} \
               collectedstatic/ *.wsgi sharpertool/ scripts/ \
               requirements/ requirements.txt \
@@ -244,9 +244,12 @@ jobs:
       - run:
           name: Deploy the zip file to the remote bucket
           command: |
-            zipfile=$(./scripts/zipfilename.sh)
+            pwd
+            ls -al zipout
+            zipfile=$(ls zipout/)
+            echo "Deploying ${zipfile} to S3"
             VERSION=${CIRCLE_TAG:-${CIRCLE_SHA1}}
-            s3path="s3://${DEPLOY_BUCKET}/${DEPLOY_BUCKET_PATH}/${VERSION}/${zipfile}"
+            s3path="s3://${DEPLOY_BUCKET}/${DEPLOY_BUCKET_PATH}/${zipfile}"
             aws s3 cp zipout/${zipfile} ${s3path}
 
   deploy_to_test_server:
@@ -255,6 +258,12 @@ jobs:
       - *restore_repo
       - *disable_strict_type_checking
       - *attach_workspace
+
+      - run:
+          name: Add My IP to Digial Ocean Firewall
+          command: |
+            python ./ci_scripts/update_digitalocean_firewall_rules.py ${FIREWALL_ID}
+            sleep 5
 
       - run:
           name: Add Target Host to config to disable strict type checking
@@ -277,18 +286,31 @@ jobs:
       - run:
           name: Copy zipfile to test server
           command: |
-            ssh deploy_host "mkdir -p deploy/"
-            zipfile=$(./scripts/zipfilename.sh)
-            scp zipout/${zipfile} deploy_host:deploy/
+            ssh deploy_host "mkdir -p ${APP_DIR}/deploy/"
+            zipfile=$(ls zipout/)
+            ssh deploy_host "mkdir -p ${APP_DIR}/deploy/"
+            scp zipout/${zipfile} deploy_host:${APP_DIR}/deploy
+          environment:
+            APP_DIR: /home/django/sharpertool
 
       - run:
           name: Run deploy script on test server
           command: |
-            zipfile=$(./scripts/zipfilename.sh)
-            export VERSION=${CIRCLE_TAG:-${CIRCLE_SHA1}}
+            zipfile=$(ls zipout/)
+            echo "Deploying zipfile ${zipfile} on server"
+            timestamp=$(date +%Y-%m-%d)
+            export VERSION=${CIRCLE_TAG:-${timestamp}_${CIRCLE_SHA1}}
             echo "Updating the version to ${VERSION}"
             ssh deploy_host \
-              "./site_deploy_zip.sh ${zipfile} ${VERSION}"
+              "${APP_DIR}/site_deploy_zip.sh ${zipfile} ${VERSION}"
+          environment:
+            APP_DIR: /home/django/sharpertool
+
+      - run:
+          name: Remove My IP from Digital Ocean Firewall
+          command: |
+            python ./ci_scripts/update_digitalocean_firewall_rules.py ${FIREWALL_ID} --remove
+          when: always
 
 
 workflows:
