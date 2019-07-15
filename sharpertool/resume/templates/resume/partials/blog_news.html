@@ -21,24 +21,24 @@
         </div>
         <div class="blog-wrap">
             {% for entry in page.blog_entries.all %}
-            <article>
-                <div class="row">
-                    {% if entry.image %}
-                        <div class="col-md-5">
-                            {% image entry.image fill-200x200 %}
-                        </div>
-                    {% endif %}
-                    <div class="col-md-7">
-                        <h3><a href="./blog-single.html">{{ entry.title }}</a></h3>
-                        <!--<div class="post-meta">-->
+                <article>
+                    <div class="row">
+                        {% if entry.image %}
+                            <div class="col-md-5">
+                                {% image entry.image fill-200x200 %}
+                            </div>
+                        {% endif %}
+                        <div class="col-md-7">
+                            <h3><a href="./blog-single.html">{{ entry.title }}</a></h3>
+                            <!--<div class="post-meta">-->
                             <!--<i class="fa fa-calendar"></i> <a href="#">30 march</a>-->
                             <!--<i class="fa fa-user"></i> <a href="#">Admin</a>-->
                             <!--<i class="fa fa-comments"></i> <a href="#">10 Comments</a>-->
-                        <!--</div>-->
-                        {{ entry.text|richtext }}
+                            <!--</div>-->
+                            {{ entry.text|richtext }}
+                        </div>
                     </div>
-                </div>
-            </article>
+                </article>
             {% endfor %}
         </div>
     </div>

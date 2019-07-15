@@ -2,59 +2,61 @@
 
 {% load static wagtailcore_tags wagtailimages_tags %}
 {% load static wagtailuserbar %}
+{% load wagtailsettings_tags %}
+{% get_settings %}
 
 
 {% block extra_style %}
-{{ block.super }}
-<link rel="stylesheet" href="{% static '/static/css/landing.css' %}">
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static '/static/css/landing.css' %}">
 {% endblock %}
 
 {% block body_class %}resume-body{% endblock %}
 
 {% block body_container %}
-<!-- LOADING MASK -->
-<div id="mask">
-    <div class="loader">
-        <img src="{% static 'images/loading.gif' %}" alt='loading'>
+    <!-- LOADING MASK -->
+    <div id="mask">
+        <div class="loader">
+            <img src="{% static 'images/loading.gif' %}" alt='loading'>
+        </div>
     </div>
-</div>
 
-<!-- MAIN CONTENT -->
-<div class="main-content">
-    <div class="container no-padding">
-        <div class="row">
-            <div class="col-md-3 l-content">
-                <div class="profile-pic">
-                    {% image page.profile_image max-120x120 as profile %}
-                    <div class="pic-bg"><img src="{{ profile.url }}" class="img-responsive" alt=""/></div>
-                </div>
-                <nav>
-                    <ul class="navigation">
-                        <li><a href="#">Profile <i class="fa fa-user"></i></a></li>
-                        <li><a href="#">Work <i class="fa fa-briefcase"></i></a></li>
-                        <li><a href="#">Resume <i class="fa fa-file-text"></i></a></li>
-                        <li><a href="#">Blog <i class="fa fa-comment"></i></a></li>
-                        <li><a href="#">Contact <i class="fa fa-envelope"></i></a></li>
-                    </ul>
-                </nav>
-            </div>
-
-            <div class="col-md-9 r-content">
-                <div class="flexslider">
-                    <div class="slides">
-                        {% include "resume/partials/home_section.html" %}
-                        {% include "resume/partials/project_work.html" %}
-                        {% include "resume/partials/cv_resume.html" %}
-                        {% include "resume/partials/blog_news.html" %}
-                        {% include "resume/partials/contact.html" %}
+    <!-- MAIN CONTENT -->
+    <div class="main-content">
+        <div class="container no-padding">
+            <div class="row">
+                <div class="col-md-3 l-content">
+                    <div class="profile-pic">
+                        {% image page.profile_image max-120x120 as profile %}
+                        <div class="pic-bg"><img src="{{ profile.url }}" class="img-responsive" alt=""/></div>
                     </div>
+                    <nav>
+                        <ul class="navigation">
+                            <li><a href="#">Profile <i class="fa fa-user"></i></a></li>
+                            <li><a href="#">Work <i class="fa fa-briefcase"></i></a></li>
+                            <li><a href="#">Resume <i class="fa fa-file-text"></i></a></li>
+                            <li><a href="#">Blog <i class="fa fa-comment"></i></a></li>
+                            <li><a href="#">Contact <i class="fa fa-envelope"></i></a></li>
+                        </ul>
+                    </nav>
                 </div>
-                {% include "resume/partials/footer.html" %}
+
+                <div class="col-md-9 r-content">
+                    <div class="flexslider">
+                        <div class="slides">
+                            {% include "resume/partials/home_section.html" %}
+                            {% include "resume/partials/project_work.html" %}
+                            {% include "resume/partials/cv_resume.html" %}
+                            {% include "resume/partials/blog_news.html" %}
+                            {% include "resume/partials/contact.html" %}
+                        </div>
+                    </div>
+                    {% include "resume/partials/footer.html" %}
+                </div>
             </div>
         </div>
     </div>
-</div>
-<!-- MAIN CONTENT -->
+    <!-- MAIN CONTENT -->
 {% endblock %}
 
 {% block header %}
@@ -64,82 +66,84 @@
 {% endblock %}
 
 {% block body_script %}
-<!-- JavaScript -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-<script src="{% static 'js/bootstrap.js' %}"></script>
-<script src="{% static 'js/jquery.flexslider.js' %}"></script>
-<script src="{% static 'js/jquery.easing.js' %}"></script>
-<script src="{% static 'js/jquery.mixitup.min.js' %}"></script>
-<script src="{% static 'js/nivo-lightbox.min.js' %}"></script>
-<script src="{% static 'js/jquery.appear.js' %}"></script>
-<script src="{% static 'js/jquery.inview.js' %}"></script>
-<script src="{% static 'js/resume_main.js' %}"></script>
-<script src="{% static 'js/contact.js' %}"></script>
-<script src="{% static 'js/animations.js' %}"></script>
+    <!-- JavaScript -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="{% static 'js/bootstrap.js' %}"></script>
+    <script src="{% static 'js/jquery.flexslider.js' %}"></script>
+    <script src="{% static 'js/jquery.easing.js' %}"></script>
+    <script src="{% static 'js/jquery.mixitup.min.js' %}"></script>
+    <script src="{% static 'js/nivo-lightbox.min.js' %}"></script>
+    <script src="{% static 'js/jquery.appear.js' %}"></script>
+    <script src="{% static 'js/jquery.inview.js' %}"></script>
+    <script src="{% static 'js/resume_main.js' %}"></script>
+    <script src="{% static 'js/contact.js' %}"></script>
+    <script src="{% static 'js/animations.js' %}"></script>
 
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB7z3qSfW7_1ArWHGs69jHLbLw-jOOGwuk"></script>
-<script src="{% static 'js/gmaps.js' %}"></script>
+    {% if settings.home.SiteSettings.maps_api_key %}
+        <script src="https://maps.googleapis.com/maps/api/js?key={{ settings.home.SiteSettings.maps_api_key }}"></script>
+    {% endif %}
+    <script src="{% static 'js/gmaps.js' %}"></script>
 
-<script src="{% static 'js/styleswitch.js' %}"></script>
-<script src="{% static 'js/style_switch_custom.js' %}"></script>
+    <script src="{% static 'js/styleswitch.js' %}"></script>
+    <script src="{% static 'js/style_switch_custom.js' %}"></script>
 
-<script>
-    $(function() {
+    <script>
+      $(function() {
         $(".bg-lite").click(function() {
-            $("body").css("background", "#d9dbdd");
-        });
-    });
+          $("body").css("background", "#d9dbdd")
+        })
+      })
 
-    $(function() {
+      $(function() {
         $(".bg-dark").click(function() {
-            $("body").css("background", "#222222");
-        });
-    });
+          $("body").css("background", "#222222")
+        })
+      })
 
-    /* Google map */
-    $(function() {
-        "use strict";
+      /* Google map */
+      $(function() {
+        "use strict"
         var map = new GMaps({
-            el: "#map",
-            lat: {{ page.contact_latitude }},
-            lng: {{ page.contact_longitude }},
-            zoom: 15,
-            zoomControl: true,
-            zoomControlOpt: {
-                style: "BIG",
-                position: "TOP_LEFT"
-            },
-            panControl: true,
-            streetViewControl: false,
-            mapTypeControl: false,
-            overviewMapControl: false
-        });
+          el: "#map",
+          lat: {{ page.contact_latitude }},
+          lng: {{ page.contact_longitude }},
+          zoom: 15,
+          zoomControl: true,
+          zoomControlOpt: {
+            style: "BIG",
+            position: "TOP_LEFT"
+          },
+          panControl: true,
+          streetViewControl: false,
+          mapTypeControl: false,
+          overviewMapControl: false
+        })
 
         var styles = [
-            {
-                stylers: [
-                    {hue: "#00ffe6"},
-                    {saturation: -100}
-                ]
-            }
-        ];
+          {
+            stylers: [
+              {hue: "#00ffe6"},
+              {saturation: -100}
+            ]
+          }
+        ]
 
         map.addStyle({
-            styledMapName: "Styled Map",
-            styles: styles,
-            mapTypeId: "map_style"
-        });
+          styledMapName: "Styled Map",
+          styles: styles,
+          mapTypeId: "map_style"
+        })
 
-        map.setStyle("map_style");
+        map.setStyle("map_style")
 
         map.addMarker({
-            lat: {{ page.contact_latitude }},
-            lng: {{ page.contact_longitude }},
-            icon: "/static/images/marker.png"
-        });
-    });
+          lat: {{ page.contact_latitude }},
+          lng: {{ page.contact_longitude }},
+          icon: "/static/images/marker.png"
+        })
+      })
 
-</script>
+    </script>
 {% endblock %}
 
 {% block extra_js %}
