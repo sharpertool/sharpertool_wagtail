@@ -2,7 +2,7 @@
 
 zipfile=$1
 VERSION=$2
-APPPATH=${APPPATH:-/var/www/gardentronic}
+APPPATH=${APPPATH:-/home/django/sharpertool}
 zipdir=${APPPATH}/zipdir
 deploydir=${APPPATH}/deploy
 excludefile=${APPPATH}/deplay_exclude.lst

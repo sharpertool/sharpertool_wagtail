@@ -118,6 +118,7 @@ jobs:
           command: |
             python3 -m venv .venv
             source .venv/bin/activate
+            pip install -U pip
             pip install -r requirements/test.txt
 
       - save_cache:
@@ -252,7 +253,7 @@ jobs:
             s3path="s3://${DEPLOY_BUCKET}/${DEPLOY_BUCKET_PATH}/${zipfile}"
             aws s3 cp zipout/${zipfile} ${s3path}
 
-  deploy_to_test_server:
+  deploy_to_server:
     executor: container_config_min
     steps:
       - *restore_repo
@@ -278,13 +279,13 @@ jobs:
               cat ~/.ssh/config
             fi
 
-      - run:
-          name: Copy deploy script to test server
-          command: |
-            scp ./scripts/site_deploy_zip.sh deploy_host:site_deploy_zip.sh
+#      - run:
+#          name: Copy deploy script to test server
+#          command: |
+#            scp ./scripts/site_deploy_zip.sh deploy_host:site_deploy_zip.sh
 
       - run:
-          name: Copy zipfile to test server
+          name: Copy zipfile to server
           command: |
             ssh deploy_host "mkdir -p ${APP_DIR}/deploy/"
             zipfile=$(ls zipout/)
@@ -294,7 +295,7 @@ jobs:
             APP_DIR: /home/django/sharpertool
 
       - run:
-          name: Run deploy script on test server
+          name: Run deploy script on server
           command: |
             zipfile=$(ls zipout/)
             echo "Deploying zipfile ${zipfile} on server"
@@ -377,7 +378,7 @@ workflows:
               only:
                 - develop
 
-      - deploy_to_test_server:
+      - deploy_to_server:
           requires:
             - build_zip_file
           filters:
