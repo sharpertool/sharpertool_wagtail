@@ -269,7 +269,7 @@ jobs:
       - run:
           name: Add Target Host to config to disable strict type checking
           command: |
-            ./ci_scripts/host_config.sh
+            ./ci_scripts/host_config.sh ${DEPLOY_HOST} --user django
 
       - run:
           name: Show current config value.
@@ -290,7 +290,6 @@ jobs:
       - run:
           name: Copy zipfile to server
           command: |
-            ssh deploy_host "mkdir -p ${APP_DIR}/deploy/"
             zipfile=$(ls zipout/)
             ssh deploy_host "mkdir -p ${APP_DIR}/deploy/"
             scp zipout/${zipfile} deploy_host:${APP_DIR}/deploy
