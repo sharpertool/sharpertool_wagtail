@@ -5,7 +5,7 @@ VERSION=$2
 APPPATH=${APPPATH:-/var/www/gardentronic}
 zipdir=${APPPATH}/zipdir
 deploydir=${APPPATH}/deploy
-excludefile=${APPPATH}/gardentronic_exclude.lst
+excludefile=${APPPATH}/deplay_exclude.lst
 
 echo "unzip ${zipfile} to ${zipdir}"
 rm -rf ${zipdir}
