@@ -8,14 +8,15 @@ from .common import *
 DEBUG = env.bool('DJANGO_DEBUG', default=True)
 TEMPLATES[0]['OPTIONS']['debug'] = DEBUG
 
-MIDDLEWARE += [
-    'debug_toolbar.middleware.DebugToolbarMiddleware',
-]
+if DEBUG_TOOLBAR_ENABLE:
+    MIDDLEWARE += [
+        'debug_toolbar.middleware.DebugToolbarMiddleware',
+    ]
 
-INSTALLED_APPS += [
-    'debug_toolbar',
-    'django_extensions',
-]
+    INSTALLED_APPS += [
+        'debug_toolbar',
+        'django_extensions',
+    ]
 
 DEBUG_TOOLBAR_CONFIG = {
     'DISABLE_PANELS': [

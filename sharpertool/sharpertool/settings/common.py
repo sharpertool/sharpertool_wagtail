@@ -25,6 +25,8 @@ BASE_DIR = PROJECT_DIR - 1
 if DEBUG or True:
     print(f"Project Dir: {PROJECT_DIR} Base dir: {BASE_DIR}")
 
+DEBUG_TOOLBAR_ENABLE = env.bool('DEBUG_TOOLBAR_ENABLE', default=False)
+
 # Make these unique, and don't share it with anybody.
 SECRET_KEY = env.str('SECRET_KEY')
 
