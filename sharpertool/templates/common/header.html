@@ -17,20 +17,7 @@
 
 </div>
 
-<ul class="nav nav-tabs topnav justify-content-end">
-    <li class="nav-item {% if page.slug == 'home' %}active{% endif %}">
-        <a href="{% slugurl 'home' %}">Home</a>
-    </li>
-    <li class="nav-item {% if page.slug == 'services' %}active{% endif %}">
-        <a href="{% slugurl 'services' %}">Services</a>
-    </li>
-    <li class="nav-item {% if page.slug == 'about' %}active{% endif %}">
-        <a href="{% slugurl 'about' %}">About</a>
-    </li>
-    <li class="nav-item {% if page.slug == 'contact' %}active{% endif %}">
-        <a href="{% slugurl 'contact' %}">Contact</a>
-    </li>
-</ul>
+{% include "common/navbar.html" %}
 
 <section class="hero">
     <div class="pg-empty-placeholder hero-inner"></div>

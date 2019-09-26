@@ -16,10 +16,9 @@
             {% for h in  page.highlights.values %}
                 <div class="col-lg-3 d-flex justify-content-center align-content-center highlight-title-row">
                     {% if h.graphic %}
-                        <div class="highlight_graphic"
-                        >
+                        <a href="{{ h.link }}" target="_blank" class="highlight_graphic">
                             <img src="/static/{{ h.graphic|safe }}"/>
-                        </div>
+                        </a>
 
                     {% else %}
 

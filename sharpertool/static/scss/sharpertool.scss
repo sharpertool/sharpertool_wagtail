@@ -1,6 +1,7 @@
 /* ==========================================================================
    Sharpertool custom styles
    ========================================================================== */
+
 $navcolor: #157587;
 
 .header {
@@ -49,6 +50,7 @@ li.nav-item {
 .highlight_graphic {
     width: 100%;
     min-height: 60px;
+    display: block;
 
     img {
         width: 100%;
@@ -82,3 +84,14 @@ li.nav-item {
     justify-content: center;
     align-items: center;
 }
+
+
+
+
+
+
+
+
+
+
+

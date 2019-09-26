@@ -1,0 +1,78 @@
+/* ==========================================================================
+   Sharpertool custom styles
+   ========================================================================== */
+.header {
+  width: 100vw;
+  min-height: 120px;
+  margin-bottom: -50px;
+  background-color: white;
+}
+.header > div {
+  height: 100px;
+  padding-left: 20px;
+}
+
+.topnav {
+  margin-bottom: -1px;
+  display: flex;
+}
+
+li.nav-item {
+  background-color: #157587;
+  margin: 0 10px;
+  border-radius: 5px 5px 0 0;
+  padding: 5px 10px;
+}
+li.nav-item:not(.active) {
+  border-bottom: 2px solid white;
+}
+li.nav-item:not(.active) a {
+  color: black;
+}
+li.nav-item.active > a {
+  color: white;
+}
+
+.highlight-title-row {
+  justify-content: center;
+  align-items: center;
+}
+
+.highlight_graphic {
+  width: 100%;
+  min-height: 60px;
+  display: block;
+}
+.highlight_graphic img {
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+}
+
+.hero {
+  width: 100%;
+  height: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #157587;
+}
+
+.hero-inner {
+  margin: 0;
+  width: 100%;
+  height: 400px;
+  background-color: lightgray;
+  background-image: url("/static/img/hero_banner.svg");
+}
+
+.footer {
+  display: flex;
+  background-color: #157587;
+  color: white;
+  min-height: 80px;
+  justify-content: center;
+  align-items: center;
+}
+
+/*# sourceMappingURL=sharpertool.css.map */
