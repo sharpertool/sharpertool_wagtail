@@ -1,4 +1,4 @@
--r base.txt
+-r dev.txt
 
 # Database
 psycopg2==2.7.5

@@ -1,12 +1,13 @@
 
 # Core tools
 django==2.2.3
-wagtail==2.5.1
+wagtail==2.6.2
 
-django-allauth==0.39.1
+django-allauth==0.40.0
 
 # Logging, errors
 raven==6.10.0
+sentry-sdk~=0.10
 
 django-model-utils==3.2.0
 
@@ -18,7 +19,7 @@ django-redis==4.10.0
 
 # Static and Media files
 django-storages==1.7.1
-boto3==1.9.188
+boto3~=1.9
 django-pipeline==1.6.14
 
 # SCSS files

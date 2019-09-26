@@ -16,3 +16,4 @@ __pycache__/
 *.map
 /sharpertool/static/css/main.css
 /sharpertool/static/css/landing.css
+/.env

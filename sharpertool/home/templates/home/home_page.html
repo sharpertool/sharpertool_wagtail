@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "site-base.html" %}
 
 {% load static wagtailcore_tags wagtailimages_tags %}
 {% load static wagtailuserbar %}
@@ -8,32 +8,43 @@
     <link rel="stylesheet" href="{% static '/static/css/landing.css' %}">
 {% endblock %}
 
-{% block header %}
-{% endblock %}
-
 {% block body %}
-    <div class="jumbotron">
-        <div class="container">
-            <h1>{{ page.title }}</h1>
-            <h3>{{ page.tagline }}</h3>
-        </div>
-    </div>
-
     <div class="container">
         <!-- Example row of columns -->
         <div class="row">
 
             {% for h in  page.highlights.values %}
-                <div class="col-lg-3">
-                    <h2>
-                        <a href="{{ h.link }}"
-                           target="_blank">
-                            {{ h.name }}
-                        </a>
-                    </h2>
+                <div class="col-lg-3 d-flex justify-content-center align-content-center highlight-title-row">
+                    {% if h.graphic %}
+                        <div class="highlight_graphic"
+                        >
+                            <img src="/static/{{ h.graphic|safe }}"/>
+                        </div>
+
+                    {% else %}
+
+                        <h2>
+                            <a href="{{ h.link }}"
+                               target="_blank">
+                                {{ h.name }}
+                            </a>
+                        </h2>
+                    {% endif %}
+                </div>
+                <div class="col-lg-3 d-lg-none">
                     {{ h.text|richtext }}
                 </div>
             {% endfor %}
         </div>
+        <div class="row">
+            {% for h in  page.highlights.values %}
+                <div class="col-lg-3 d-none d-lg-block">
+                    {{ h.text|richtext }}
+                </div>
+            {% endfor %}
+
+        </div>
+
     </div>
 {% endblock %}
+

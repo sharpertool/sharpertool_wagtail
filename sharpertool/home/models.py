@@ -28,15 +28,20 @@ class HomePage(Page):
 
 
 class HomePageHighlight(Orderable):
-    page = ParentalKey(HomePage, on_delete=models.CASCADE, related_name='highlights')
+    page = ParentalKey(HomePage,
+                       on_delete=models.CASCADE,
+                       related_name='highlights')
     name = models.CharField(max_length=30)
     link = models.URLField()
     text = RichTextField()
+    graphic = models.CharField(max_length=200,
+                               null=True, blank=True)
 
     panels = [
         FieldPanel('name'),
         FieldPanel('link'),
-        FieldPanel('text', classname='full')
+        FieldPanel('text', classname='full'),
+        FieldPanel('graphic'),
     ]
 
 
