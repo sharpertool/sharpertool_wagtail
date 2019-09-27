@@ -56,14 +56,14 @@ li.nav-item.active > a {
   justify-content: center;
   align-items: center;
   background-color: #157587;
-}
-
-.hero-inner {
-  margin: 0;
-  width: 100%;
-  height: 400px;
-  background-color: lightgray;
   background-image: url("/static/img/hero_banner.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  backgrond-size: cover;
+}
+.hero h2 {
+  color: white;
+  display: none;
 }
 
 .footer {
