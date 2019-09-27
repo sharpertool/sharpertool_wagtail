@@ -2,6 +2,14 @@
 
 {% load static wagtailcore_tags wagtailimages_tags %}
 {% load static wagtailuserbar %}
+{% load render_bundle from webpack_loader %}
+
+{% block extra_css %}
+    {{ block.super }}
+
+    {% render_bundle 'services' 'css' 'ASSETS' %}
+
+{% endblock extra_css %}
 
 {% block body %}
     <div class="jumbotron">
@@ -13,49 +21,43 @@
 
     <div class="container">
         <!-- Example row of columns -->
-        <div class="row">
 
-            {% for h in  page.services.values %}
-                <div class="col-lg-3 d-flex justify-content-center align-content-center highlight-title-row">
-                    {% if h.graphic %}
+        {% for service in  page.services.values %}
+            <div class="row service">
+                <div class="col-12 d-flex justify-content-center align-content-center highlight-title-row">
+                    {% if service.graphic %}
                         <div class="highlight_graphic"
                         >
                             <img src="/static/{{ h.graphic|safe }}"/>
                         </div>
 
                     {% else %}
-
                         <h2>
-                            <a href="{{ h.link }}"
+                            <a href="{{ service.link }}"
                                target="_blank">
-                                {{ h.name }}
+                                {{ service.name }}
                             </a>
                         </h2>
                     {% endif %}
                 </div>
-                <div class="col-lg-3 d-lg-none">
-                    {{ h.text|richtext }}
+                <div class="col-6 offset-3">
+                    {{ service.text|richtext }}
                 </div>
 
-                {% if  h.code %}
-                    <div class="col-lg-3 d-lg-none">
-                        {{ h.text|richtext }}
+                {% if  service.code %}
+                    <div class="col-6 offset-3">
+                        {{ service.text|richtext }}
                     </div>
                 {% endif %}
 
-                {% if h.text2 %}
-                    {{ h.text2|richtext }}
-                {% endif %}
-            {% endfor %}
-        </div>
-        <div class="row">
-            {% for h in  page.services.values %}
-                <div class="col-lg-3 d-none d-lg-block">
-                    {{ h.text|richtext }}
-                </div>
-            {% endfor %}
+                {% if service.text2 %}
+                    <div class="col-6 offset-3">
+                        {{ service.text2|richtext }}
 
-        </div>
+                    </div>
+                {% endif %}
+            </div>
+        {% endfor %}
 
     </div>
 {% endblock %}

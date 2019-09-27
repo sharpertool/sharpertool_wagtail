@@ -11,6 +11,11 @@
   height: 100px;
   padding-left: 20px;
 }
+.header .st_name span {
+  display: block;
+  font-style: italic;
+  font-size: 100px;
+}
 
 .topnav {
   margin-bottom: -1px;

@@ -12,7 +12,20 @@ $navcolor: #157587;
 
     > div {
         height: 100px;
-        padding-left: 20px;
+        padding-left: 40px;
+    }
+
+    .st_name {
+        img {
+            display: block;
+            margin-left: 10px;
+        }
+
+        div {
+            display: none;
+            font-style: italic;
+            font-size: 16px;
+        }
     }
 }
 
