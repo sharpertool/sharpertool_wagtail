@@ -1,9 +1,0 @@
-{
-  "name": "CircleCI",
-  "strict": false,
-  "breakOnError": false,
-  "src": "../sharpertool",
-  "dest": "../sharpertool/static",
-  "srcmap": false,
-  "minify": true
-}
