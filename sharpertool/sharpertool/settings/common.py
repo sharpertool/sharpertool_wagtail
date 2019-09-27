@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'portfolio',
     'contact',
     'about',
+    'frontend',
 
     'wagtail.contrib.forms',
     'wagtail.contrib.redirects',
@@ -109,6 +110,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'wagtail.contrib.settings.context_processors.settings',
+                'frontend.context.frontend_context',
             ],
         },
     },
