@@ -17,3 +17,6 @@ __pycache__/
 /sharpertool/static/css/main.css
 /sharpertool/static/css/landing.css
 /.env
+/sharpertool/static/js_webpack
+/sharpertool/static/css_webpack
+/sharpertool/static/webpack-assets-stats.json

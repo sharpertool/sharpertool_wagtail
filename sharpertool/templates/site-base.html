@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load static wagtailuserbar %}
+{% load render_bundle from webpack_loader %}
 
 {% block meta %}
     {{ block.super }}
@@ -11,8 +12,11 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
           integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 
-    <link rel="stylesheet" href="{% static 'css/main.css' %}">
-    <link rel="stylesheet" href="{% static 'css/sharpertool.css' %}">
+    {% block render_css_bundles %}
+        {{ block.super }}
+        {% render_bundle 'main' 'css' 'ASSETS' %}
+        {% render_bundle 'sharpertool' 'css' 'ASSETS' %}
+    {% endblock %}
 
 {% endblock head_css %}
 

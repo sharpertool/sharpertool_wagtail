@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 """
 
 import environ
-import os
+from os.path import exists
 
 env = environ.Env()
 
@@ -21,6 +21,10 @@ DEBUG = env.bool('DJANGO_DEBUG', default=False)
 CONF_DIR = environ.Path(__file__)
 PROJECT_DIR = environ.Path(__file__) - 3
 BASE_DIR = PROJECT_DIR - 1
+
+STATICFILES_DIRS = [
+    PROJECT_DIR('static'),
+]
 
 if DEBUG or True:
     print(f"Project Dir: {PROJECT_DIR} Base dir: {BASE_DIR}")
@@ -63,6 +67,7 @@ INSTALLED_APPS = [
     'modelcluster',
     'taggit',
     'crispy_forms',
+    'webpack_loader',
 
     'django.contrib.admin',
     'django.contrib.auth',
@@ -166,6 +171,49 @@ STATICFILES_FINDERS = [
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
 ]
+
+# True to use bundles. False to use local logic
+BUILD_OUTPUT_DIR = env.str('BUILD_OUTPUT_DIR', default=PROJECT_DIR('static'))
+RENDER_BUNDLES = env.bool('RENDER_BUNDLES', default=True)
+if DEBUG:
+
+    STATICFILES_DIRS += [str(BUILD_OUTPUT_DIR)]
+
+    ASSETS_STATS_FILE = PROJECT_DIR('static/webpack-assets-stats.json')
+
+    if exists(ASSETS_STATS_FILE):
+        print(f"Loading assets from {ASSETS_STATS_FILE}")
+        WEBPACK_LOADER = {
+            'ASSETS': {
+                'CACHE': not DEBUG,
+                'BUNDLE_DIR_NAME': env.str('ASSETS_BUNDLE', default='/static'),
+                'STATS_FILE': ASSETS_STATS_FILE,
+                'POLL_INTERVAL': 0.1,
+                'TIMEOUT': None,
+            },
+        }
+    else:
+        RENDER_BUNDLES = False
+else:
+    ASSETS_STATS_FILE = env.str('ASSETS_STATS_FILE',
+                                default=PROJECT_DIR(
+                                    'frontend/webpack-assets-stats.json'
+                                ))
+
+    if exists(ASSETS_STATS_FILE):
+        ''' Turn off render bundles if no config file is found. '''
+        WEBPACK_LOADER = {
+            'ASSETS': {
+                'CACHE': not DEBUG,
+                'BUNDLE_DIR_NAME': env.str('ASSETS_BUNDLE', default='/'),
+                'STATS_FILE': ASSETS_STATS_FILE,
+                'POLL_INTERVAL': 0.1,
+                'TIMEOUT': None,
+            },
+        }
+    else:
+        RENDER_BUNDLES = False
+
 
 # Django Storages
 AWS_ACCESS_KEY_ID = env.str("AWS_ACCESS_KEY_ID", default=None)
