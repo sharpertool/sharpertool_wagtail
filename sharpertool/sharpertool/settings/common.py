@@ -62,6 +62,7 @@ INSTALLED_APPS = [
 
     'modelcluster',
     'taggit',
+    'crispy_forms',
 
     'django.contrib.admin',
     'django.contrib.auth',
@@ -184,6 +185,8 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     PROJECT_DIR('static'),
 ]
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 MEDIA_ROOT = env.str("MEDIA_ROOT_LOCAL", default=BASE_DIR('media'))
 MEDIA_URL = '/media/'
