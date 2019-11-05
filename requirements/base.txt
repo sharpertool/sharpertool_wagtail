@@ -1,14 +1,14 @@
 
 # Core tools
-django==2.2.3
-wagtail==2.6.2
+django==2.2.7
+wagtail==2.6.3
 
 django-allauth==0.40.0
-django-crispy-forms~=1.7
+django-crispy-forms==1.8.0
 
 # Logging, errors
 raven==6.10.0
-sentry-sdk~=0.10
+sentry-sdk==0.13.1
 
 django-model-utils==3.2.0
 
@@ -19,18 +19,18 @@ django-environ==0.4.5
 django-redis==4.10.0
 
 # Static and Media files
-django-storages==1.7.1
-boto3~=1.9
+django-storages==1.7.2
+boto3==1.10.10
 django-pipeline==1.6.14
 
 # SCSS files
 django-compressor==2.3
 
 # Utilities
-pytz==2019.1
+pytz==2019.3
 Pillow==5.4.1
 
-django-suit==0.2.26
+django-suit==0.2.28
 
 # Deployment
 #zappa==0.45.1

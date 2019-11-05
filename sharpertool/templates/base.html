@@ -46,16 +46,20 @@
 {% wagtailuserbar %}
 
 {% block body_container %}
+
     {% block header %}
         {% block navbar %}
         {% endblock navbar %}
     {% endblock %}
 
-    {% block body %}
-    {% endblock %}
+    <div class="content">
+        {% block body %}
+        {% endblock %}
+    </div>
 
     {% block footer %}
     {% endblock %}
+
 
 {% endblock %}
 

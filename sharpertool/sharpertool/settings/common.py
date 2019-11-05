@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 
 import environ
 from os.path import exists
+import sentry_sdk
+from sentry_sdk.integrations.django import DjangoIntegration
 
 env = environ.Env()
 
@@ -279,14 +281,24 @@ BASE_URL = 'https://{WAGTAIL_SITE_NAME}'
 ALLOWED_HOSTS = env.list('DJANGO_ALLOWED_HOSTS', default=[WAGTAIL_SITE_NAME])
 
 # Get settings from environment. These are required to be set.
+APP_VERSION = env.str("APP_VERSION", default='unknown')
+
+DJANGO_SENTRY_DSN = env.str(
+    'DJANGO_SENTRY_DSN',
+    default='https://3b0def3084d74930bededf46fd6b69c7@sentry.io/1809129')
+
+sentry_sdk.init(
+    dsn=DJANGO_SENTRY_DSN,
+    integrations=[DjangoIntegration()],
+    release=f"sharpertool@{APP_VERSION}"
+)
+
 RAVEN_CONFIG = {
-    'dsn': env.str('DJANGO_SENTRY_DSN', default=''),
-    # Public DSN is passed to Javascript since it is client side and could be compromised.
-    'public_dsn': env.str('DJANGO_SENTRY_PUBLIC_DSN', default=''),
+    'dsn': DJANGO_SENTRY_DSN,
     # If you are using git, you can also automatically configure the
     # release based on the git info.
     # 'release': raven.fetch_git_sha(GIT_ROOT),
-    'release': env.str('DATAPAGES_VERSION', default='')
+    'release': env.str('APP_VERSION', default='')
 }
 
 LOGGING = {
