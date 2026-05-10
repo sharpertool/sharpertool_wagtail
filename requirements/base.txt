@@ -1,8 +1,9 @@
-# Rung 2: Django 3.2 LTS + Wagtail 3.0 + Python 3.9
+# Rung 3: Django 4.1 + Wagtail 4.2 LTS + Python 3.9
+# (Wagtail 4.2 caps Django at <4.2; Django 4.2 + Wagtail 5.2 LTS together at rung 4.)
 
 # Core
-django==3.2.25
-wagtail==3.0.3
+django==4.1.13
+wagtail==4.2.4
 
 django-crispy-forms==1.14.0
 
