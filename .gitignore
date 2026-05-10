@@ -20,3 +20,10 @@ __pycache__/
 /sharpertool/static/js_webpack
 /sharpertool/static/css_webpack
 /sharpertool/static/webpack-assets-stats.json
+
+# Local secrets — never commit
+/.envrc
+/ssl/
+
+# Local backups taken before the modernization upgrade
+/.upgrade-backup/
