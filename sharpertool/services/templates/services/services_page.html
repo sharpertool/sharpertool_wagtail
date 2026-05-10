@@ -1,15 +1,6 @@
 {% extends "site-base.html" %}
 
-{% load static wagtailcore_tags wagtailimages_tags %}
-{% load static wagtailuserbar %}
-{% load render_bundle from webpack_loader %}
-
-{% block extra_css %}
-    {{ block.super }}
-
-    {% render_bundle 'services' 'css' 'ASSETS' %}
-
-{% endblock extra_css %}
+{% load static wagtailcore_tags wagtailimages_tags wagtailuserbar %}
 
 {% block body %}
     <div class="jumbotron">

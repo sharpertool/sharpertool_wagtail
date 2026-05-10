@@ -1,12 +1,6 @@
 {% extends "site-base.html" %}
 
-{% load static wagtailcore_tags wagtailimages_tags %}
-{% load static wagtailuserbar %}
-
-{% block extra_style %}
-    {{ block.super }}
-    <link rel="stylesheet" href="{% static '/static/css/landing.css' %}">
-{% endblock %}
+{% load static wagtailcore_tags wagtailimages_tags wagtailuserbar %}
 
 {% block body %}
     <div class="container">

@@ -28,3 +28,9 @@ __pycache__/
 
 # Local backups taken before the modernization upgrade
 /.upgrade-backup/
+
+# Postgres dumps with hashed credentials — do not commit
+/database/
+
+# Playwright smoke test screenshots
+/playwright_smoke/out/
