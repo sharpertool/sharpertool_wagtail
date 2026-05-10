@@ -270,6 +270,8 @@ else:
 WAGTAIL_SITE_NAME = env.str("WAGTAIL_SITE_NAME", default="sharpertool.com")
 WAGTAILADMIN_BASE_URL = env.str("WAGTAILADMIN_BASE_URL", default=f"https://{WAGTAIL_SITE_NAME}")
 
+SITE_ID = 1
+
 # Hosts/domain names that are valid for this site; required if DEBUG is False
 # See https://docs.djangoproject.com/en/dev/ref/settings/#allowed-hosts
 ALLOWED_HOSTS = env.list('DJANGO_ALLOWED_HOSTS', default=[WAGTAIL_SITE_NAME])

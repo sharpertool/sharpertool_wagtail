@@ -1,8 +1,9 @@
-# Rung 4 (final target): Django 4.2 LTS + Wagtail 5.2 LTS + Python 3.12
+# Rung 5: Django 5.2 LTS + Wagtail 7.4 LTS + Python 3.12
+# Wagtail 7.4 dropped Django 4.2; Django 5.2 LTS is supported through 2028-04.
 
 # Core
-django==4.2.16
-wagtail==5.2.6
+django==5.2.14
+wagtail==7.4
 
 django-crispy-forms==1.14.0
 
