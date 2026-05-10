@@ -3,7 +3,7 @@
 from django.db import migrations, models
 import django.db.models.deletion
 import modelcluster.fields
-import wagtail.core.fields
+import wagtail.fields
 
 
 class Migration(migrations.Migration):
@@ -21,7 +21,7 @@ class Migration(migrations.Migration):
                 ('title', models.CharField(blank=True, max_length=120, null=True)),
                 ('start', models.CharField(blank=True, max_length=20, null=True)),
                 ('end', models.CharField(blank=True, max_length=20, null=True)),
-                ('text', wagtail.core.fields.RichTextField(blank=True, null=True)),
+                ('text', wagtail.fields.RichTextField(blank=True, null=True)),
                 ('page', modelcluster.fields.ParentalKey(on_delete=django.db.models.deletion.CASCADE, related_name='education', to='resume.ResumePage')),
             ],
             options={
@@ -37,7 +37,7 @@ class Migration(migrations.Migration):
                 ('title', models.CharField(blank=True, max_length=120, null=True)),
                 ('start', models.CharField(blank=True, max_length=20, null=True)),
                 ('end', models.CharField(blank=True, max_length=20, null=True)),
-                ('text', wagtail.core.fields.RichTextField(blank=True, null=True)),
+                ('text', wagtail.fields.RichTextField(blank=True, null=True)),
                 ('page', modelcluster.fields.ParentalKey(on_delete=django.db.models.deletion.CASCADE, related_name='experience', to='resume.ResumePage')),
             ],
             options={

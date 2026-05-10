@@ -7,11 +7,11 @@ from wagtail.admin.panels import (
 from wagtail.fields import RichTextField
 from wagtail.models import Page
 from wagtail.models import Orderable
-from wagtail.contrib.settings.models import BaseSetting, register_setting
+from wagtail.contrib.settings.models import BaseSiteSetting, register_setting
 
 
 @register_setting
-class SiteSettings(BaseSetting):
+class SiteSettings(BaseSiteSetting):
     maps_api_key = models.CharField(
         max_length=256, help_text='Google Maps API Key for contact area',
         default=''
