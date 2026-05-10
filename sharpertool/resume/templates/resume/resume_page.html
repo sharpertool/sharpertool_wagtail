@@ -14,6 +14,12 @@
 {% block body_class %}resume-body{% endblock %}
 
 {% block body_container %}
+    {% if page.resume_pdf %}
+        <a href="{{ page.resume_pdf.url }}" class="resume-pdf-download" download>
+            Download PDF
+        </a>
+    {% endif %}
+
     <!-- LOADING MASK -->
     <div id="mask">
         <div class="loader">

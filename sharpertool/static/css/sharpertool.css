@@ -80,4 +80,22 @@ li.nav-item.active > a {
   align-items: center;
 }
 
+.resume-pdf-download {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  z-index: 1000;
+  background: #2c3e50;
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  text-decoration: none;
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+.resume-pdf-download:hover {
+  background: #34495e;
+  color: #fff;
+}
+
 /*# sourceMappingURL=sharpertool.css.map */

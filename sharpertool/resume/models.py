@@ -31,6 +31,12 @@ class ResumePage(Page):
     contact_longitude = models.FloatField(null=True, blank=True)
     contact_latitude = models.FloatField(null=True, blank=True)
 
+    resume_pdf = models.ForeignKey(
+        'wagtaildocs.Document', null=True, blank=True,
+        on_delete=models.SET_NULL, related_name='+',
+        help_text='Optional: upload a PDF version for download.'
+    )
+
 
     content_panels = Page.content_panels + [
         MultiFieldPanel([
@@ -58,6 +64,9 @@ class ResumePage(Page):
             FieldPanel('contact_longitude', heading='Longitude of Contact location'),
             FieldPanel('contact_latitude', heading='Latitude of Contact location'),
         ], heading='Contacts', classname="collapsible collapsed"),
+        MultiFieldPanel([
+            FieldPanel('resume_pdf'),
+        ], heading='Downloadable PDF', classname="collapsible collapsed"),
         MultiFieldPanel([
             InlinePanel('blog_entries')
         ], heading='Blog Entries', classname="collapsible collapsed")
