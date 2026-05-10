@@ -1,14 +1,13 @@
 from django.db import models
 
 from modelcluster.fields import ParentalKey
-from wagtail.admin.edit_handlers import (
+from wagtail.admin.panels import (
     FieldPanel,
     MultiFieldPanel,
     InlinePanel)
-from wagtail.core.fields import RichTextField
-from wagtail.core.models import Page
-from wagtail.core.models import Orderable
-from wagtail.images.edit_handlers import ImageChooserPanel
+from wagtail.fields import RichTextField
+from wagtail.models import Page
+from wagtail.models import Orderable
 
 
 class ResumePage(Page):
@@ -43,7 +42,7 @@ class ResumePage(Page):
             FieldPanel('address'),
             FieldPanel('website'),
             FieldPanel('phone'),
-            ImageChooserPanel('profile_image'),
+            FieldPanel('profile_image'),
         ], heading='Home Section', classname="collapsible collapsed"),
         MultiFieldPanel([
             InlinePanel('project_item'),
@@ -95,8 +94,8 @@ class ResumeProjectItem(Orderable):
         FieldPanel('section'),
         FieldPanel('title'),
         FieldPanel('subtext'),
-        ImageChooserPanel('image', heading='Large image for lightbox'),
-        ImageChooserPanel('thumb', heading='thumbnail image'),
+        FieldPanel('image', heading='Large image for lightbox'),
+        FieldPanel('thumb', heading='thumbnail image'),
     ]
 
 
@@ -154,6 +153,6 @@ class ResumeBlog(Orderable):
 
     panels = [
         FieldPanel('title'),
-        ImageChooserPanel('image', heading='Large image for lightbox'),
+        FieldPanel('image', heading='Large image for lightbox'),
         FieldPanel('text'),
     ]

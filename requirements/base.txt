@@ -1,8 +1,8 @@
-# Rung 1: Django 3.2 LTS + Wagtail 2.15 + Python 3.9
+# Rung 2: Django 3.2 LTS + Wagtail 3.0 + Python 3.9
 
 # Core
 django==3.2.25
-wagtail==2.15.6
+wagtail==3.0.3
 
 django-crispy-forms==1.14.0
 

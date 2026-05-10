@@ -59,9 +59,9 @@ INSTALLED_APPS = [
     'wagtail.images',
     'wagtail.search',
     'wagtail.admin',
-    'wagtail.core',
-    "wagtail.contrib.table_block",
-    "wagtail.contrib.settings",
+    'wagtail',
+    'wagtail.contrib.table_block',
+    'wagtail.contrib.settings',
 
     'modelcluster',
     'taggit',
@@ -268,10 +268,7 @@ else:
 # Wagtail settings
 
 WAGTAIL_SITE_NAME = env.str("WAGTAIL_SITE_NAME", default="sharpertool.com")
-
-# Base URL to use when referring to full URLs within the Wagtail admin backend -
-# e.g. in notification emails. Don't include '/admin' or a trailing slash
-BASE_URL = 'https://{WAGTAIL_SITE_NAME}'
+WAGTAILADMIN_BASE_URL = env.str("WAGTAILADMIN_BASE_URL", default=f"https://{WAGTAIL_SITE_NAME}")
 
 # Hosts/domain names that are valid for this site; required if DEBUG is False
 # See https://docs.djangoproject.com/en/dev/ref/settings/#allowed-hosts
