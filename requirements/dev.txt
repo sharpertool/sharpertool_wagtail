@@ -1,13 +1,11 @@
 -r base.txt
 
-# Database
-psycopg2==2.7.5
+# Database (psycopg2-binary avoids needing pg headers locally)
+psycopg2-binary==2.9.9
 
-django-extensions
-Werkzeug
+django-extensions==3.2.3
+Werkzeug==3.0.3
 
-django-debug-toolbar
+django-debug-toolbar==3.8.1
 
-ipython
-
-pip-outdated
+ipython==8.18.1

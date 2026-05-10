@@ -14,8 +14,10 @@
 
     {% block render_css_bundles %}
         {{ block.super }}
-        {% render_bundle 'main' 'css' 'ASSETS' %}
-        {% render_bundle 'sharpertool' 'css' 'ASSETS' %}
+        {% if render_bundles %}
+            {% render_bundle 'main' 'css' 'ASSETS' %}
+            {% render_bundle 'sharpertool' 'css' 'ASSETS' %}
+        {% endif %}
     {% endblock %}
 
 {% endblock head_css %}

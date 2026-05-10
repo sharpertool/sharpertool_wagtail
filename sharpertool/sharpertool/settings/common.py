@@ -24,10 +24,6 @@ CONF_DIR = environ.Path(__file__)
 PROJECT_DIR = environ.Path(__file__) - 3
 BASE_DIR = PROJECT_DIR - 1
 
-STATICFILES_DIRS = [
-    PROJECT_DIR('static'),
-]
-
 if DEBUG or True:
     print(f"Project Dir: {PROJECT_DIR} Base dir: {BASE_DIR}")
 
@@ -80,8 +76,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'storages',
-    #'pipeline',
-    'raven.contrib.django.raven_compat',
 ]
 
 MIDDLEWARE = [
@@ -93,7 +87,6 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.security.SecurityMiddleware',
 
-    'wagtail.core.middleware.SiteMiddleware',
     'wagtail.contrib.redirects.middleware.RedirectMiddleware',
 ]
 
@@ -233,11 +226,15 @@ AWS_S3_OBJECT_PARAMETERS = env.dict("AWS_S3_OBJECT_PARAMETERS",
 AWS_S3_CUSTOM_DOMAIN = env.str("AWS_S3_CUSTOM_DOMAIN",
                                default=f"{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com")
 
-STATIC_ROOT = PROJECT_DIR('static')
+STATIC_ROOT = BASE_DIR('collectedstatic')
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     PROJECT_DIR('static'),
 ]
+
+# Preserve AutoField PKs to match the existing SQLite content from 2018.
+# Switching to BigAutoField now would force every model to migrate.
+DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
@@ -283,30 +280,21 @@ ALLOWED_HOSTS = env.list('DJANGO_ALLOWED_HOSTS', default=[WAGTAIL_SITE_NAME])
 # Get settings from environment. These are required to be set.
 APP_VERSION = env.str("APP_VERSION", default='unknown')
 
-DJANGO_SENTRY_DSN = env.str(
-    'DJANGO_SENTRY_DSN',
-    default='https://3b0def3084d74930bededf46fd6b69c7@sentry.io/1809129')
+DJANGO_SENTRY_DSN = env.str('DJANGO_SENTRY_DSN', default='')
 
-sentry_sdk.init(
-    dsn=DJANGO_SENTRY_DSN,
-    integrations=[DjangoIntegration()],
-    release=f"sharpertool@{APP_VERSION}"
-)
-
-RAVEN_CONFIG = {
-    'dsn': DJANGO_SENTRY_DSN,
-    # If you are using git, you can also automatically configure the
-    # release based on the git info.
-    # 'release': raven.fetch_git_sha(GIT_ROOT),
-    'release': env.str('APP_VERSION', default='')
-}
+if DJANGO_SENTRY_DSN:
+    sentry_sdk.init(
+        dsn=DJANGO_SENTRY_DSN,
+        integrations=[DjangoIntegration()],
+        release=f"sharpertool@{APP_VERSION}",
+    )
 
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': True,
     'root': {
         'level': 'WARNING',
-        'handlers': ['sentry'],
+        'handlers': ['console'],
     },
     'formatters': {
         'verbose': {
@@ -315,30 +303,15 @@ LOGGING = {
         },
     },
     'handlers': {
-        'sentry': {
-            'level': 'WARNING',  # To capture more than ERROR, change to WARNING, INFO, etc.
-            'class': 'raven.contrib.django.raven_compat.handlers.SentryHandler',
-            'tags': {'custom-tag': 'x'},
-        },
         'console': {
             'level': 'DEBUG',
             'class': 'logging.StreamHandler',
-            'formatter': 'verbose'
-        }
+            'formatter': 'verbose',
+        },
     },
     'loggers': {
         'django.db.backends': {
             'level': 'ERROR',
-            'handlers': ['console'],
-            'propagate': False,
-        },
-        'raven': {
-            'level': 'DEBUG',
-            'handlers': ['console'],
-            'propagate': False,
-        },
-        'sentry.errors': {
-            'level': 'DEBUG',
             'handlers': ['console'],
             'propagate': False,
         },
